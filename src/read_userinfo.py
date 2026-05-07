@@ -32,7 +32,7 @@ class PortfolioReader:
     def __init__(self):
         self.df = read_portfolio()
         
-    def NameForNews(self):
+    def NameForNews(self) -> list:
         """
         내가 가진 자산의 이름들만 가져옵니다.
         """

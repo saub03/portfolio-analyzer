@@ -54,11 +54,21 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     
     logger.info("\n\n========== 자동화 프로그램 시작 ==========")
+    
+    '''
+    1. 유저 포트폴리오 portfolio.json 읽어오기 
+        1) asset_names에 종목명 리스트 저장
+        2) TODO: AI에게 넘길 정보 저장 
+    '''
+    
     logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 이름 추출 시작...")
     userInfoReader = PortfolioReader()
     asset_names = userInfoReader.NameForNews()
     logger.info(f"포트폴리오 자산 이름 추출 완료: {len(asset_names)}건 {asset_names}")
-        
+    
+    '''
+    2. 
+    '''
     
     scraper = WebScraper()
     calendar_data = scraper.execute_scrape()
