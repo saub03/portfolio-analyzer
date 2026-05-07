@@ -5,7 +5,6 @@ import os
 from dotenv import load_dotenv
 import json
 from datetime import datetime
-from datetime import datetime# TODO: 프로그램 시작에 시간 추가하고, 공백 주기
 
 from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
