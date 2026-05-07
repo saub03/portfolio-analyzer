@@ -1,0 +1,202 @@
+[
+    {
+        "date": "2026-05-04",
+        "time": "All Day",
+        "country": "CN",
+        "event_type": "Holiday",
+        "event_name": "Labor Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-04",
+        "time": "All Day",
+        "country": "JP",
+        "event_type": "Holiday",
+        "event_name": "Greenery Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-04",
+        "time": "All Day",
+        "country": "UK",
+        "event_type": "Holiday",
+        "event_name": "Early May Bank Holiday",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-05",
+        "time": "All Day",
+        "country": "CN",
+        "event_type": "Holiday",
+        "event_name": "Labor Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-05",
+        "time": "All Day",
+        "country": "JP",
+        "event_type": "Holiday",
+        "event_name": "National Sovereignty and Children's Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-05",
+        "time": "All Day",
+        "country": "KR",
+        "event_type": "Holiday",
+        "event_name": "National Sovereignty and Children's Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-05",
+        "time": "21:01",
+        "country": "13:30",
+        "event_type": "Indicator",
+        "event_name": "AU",
+        "actual": "RBA Interest Rate Decision (May)",
+        "consensus": "4.35% 4.35%",
+        "previous": "4.10%"
+    },
+    {
+        "date": "2026-05-05",
+        "time": "22:45",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "S&P Global Services PMI (Apr)",
+        "actual": null,
+        "consensus": "51.3",
+        "previous": "49.8"
+    },
+    {
+        "date": "2026-05-05",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "New Home Sales (Mar)",
+        "actual": null,
+        "consensus": "652K",
+        "previous": "587K"
+    },
+    {
+        "date": "2026-05-05",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "JOLTS Job Openings (Mar)",
+        "actual": null,
+        "consensus": "6.860M",
+        "previous": "6.882M"
+    },
+    {
+        "date": "2026-05-05",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "ISM Non-Manufacturing Prices (Apr)",
+        "actual": null,
+        "consensus": null,
+        "previous": "70.7"
+    },
+    {
+        "date": "2026-05-05",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "ISM Non-Manufacturing PMI (Apr)",
+        "actual": null,
+        "consensus": "53.7",
+        "previous": "54.0"
+    },
+    {
+        "date": "2026-05-06",
+        "time": "All Day",
+        "country": "JP",
+        "event_type": "Holiday",
+        "event_name": "Constitution Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-06",
+        "time": "21:15",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "ADP Nonfarm Employment Change (Apr)",
+        "actual": null,
+        "consensus": "116K",
+        "previous": "62K"
+    },
+    {
+        "date": "2026-05-06",
+        "time": "23:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Crude Oil Inventories",
+        "actual": null,
+        "consensus": "-2.800M",
+        "previous": "-6.234M"
+    },
+    {
+        "date": "2026-05-07",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Initial Jobless Claims",
+        "actual": null,
+        "consensus": "203K",
+        "previous": "189K"
+    },
+    {
+        "date": "2026-05-08",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Average Hourly Earnings (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.3%",
+        "previous": "0.2%"
+    },
+    {
+        "date": "2026-05-08",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Nonfarm Payrolls (Apr)",
+        "actual": null,
+        "consensus": "73K",
+        "previous": "178K"
+    },
+    {
+        "date": "2026-05-08",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Unemployment Rate (Apr)",
+        "actual": null,
+        "consensus": "4.3%",
+        "previous": "4.3%"
+    },
+    {
+        "date": "2026-05-09",
+        "time": "All Day",
+        "country": "RU",
+        "event_type": "Holiday",
+        "event_name": "Victory Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    }
+]

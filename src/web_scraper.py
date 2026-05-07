@@ -42,6 +42,11 @@ class WebScraper:
                         return None
             time.sleep(1)
             
+            # 웹페이지 최상단으로 스크롤
+            driver.execute_script("window.scrollTo(0, 0);")
+            logger.info("웹페이지 최상단으로 스크롤 완료")
+            time.sleep(1)
+
             # Show Filters 버튼 클릭
             category_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Show Filters')]")
             driver.execute_script("arguments[0].click();", category_btn)
@@ -143,6 +148,7 @@ class WebScraper:
                     "consensus": forecast,
                     "previous": previous
                 })
+        logger.info(f"경제 캘린더 데이터 전처리 완료 (정제된 데이터: {len(cal_regulized)}건)")
         return cal_regulized
     
     def execute_scrape(self):

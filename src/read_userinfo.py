@@ -1,0 +1,46 @@
+import pandas as pd
+from pathlib import Path
+import json
+
+"""
+1. 보유 자산 관련 뉴스 스크랩 -> asset 이름 추출
+2. 변동 비율 계산, 목표 비중과 차이 계산 -> 자산군별 가격 추출
+3. 고급 분석 -> 총자산 및 평가손익 계산, 자산군 및 통화별 비중 계산, 위험 지표 및 집중도 분석
+, AI에게 넘겨줄 '요약본' 작성
+
+"""
+
+
+
+# 1. 현재 파일의 절대 경로를 기준으로 부모의 부모
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 2. BASE_DIR 하위의 data/portfolio.json
+PORTFOLIO_PATH = BASE_DIR / "data" / "portfolio.json"
+
+def read_portfolio():
+    """
+    portfolio.json 읽기
+    """
+    if PORTFOLIO_PATH.exists():
+        df = pd.read_json(PORTFOLIO_PATH)
+        return df
+    else:
+        raise FileNotFoundError(f"파일을 찾을 수 없습니다: {PORTFOLIO_PATH}")
+
+class PortfolioReader:
+    def __init__(self):
+        self.df = read_portfolio()
+        
+    def NameForNews(self):
+        """
+        내가 가진 자산의 이름들만 가져옵니다.
+        """
+        asset_names = []
+        for i, row in self.df.iterrows():
+            for asset in row['assets']:
+                try:
+                    asset_names.append(asset['name'])
+                except:
+                    pass
+        return asset_names
