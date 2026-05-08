@@ -9,24 +9,19 @@ logger = logging.getLogger(__name__)
 class WebScraper:
     def __init__(self, headless=False, chrome_version=146, test_window=True):
         self.calendar_scraper = CalendarScraper(headless=headless, chrome_version=chrome_version, test_window=test_window)
-        self.news_scraper = NewsScraper(headless=headless, chrome_version=chrome_version, test_window=test_window)
+        self.news_scraper = NewsScraper()
         
     def execute_scrape_calendar(self):
         calendar_data = self.calendar_scraper.execute_scrape()
         return calendar_data
     
-    def execute_scrape_news(self, asset_names):
-        news_data = self.news_scraper.execute_scrape(asset_names=asset_names)
+    def execute_scrape_news(self, asset_keywords):
+        news_data = self.news_scraper.execute_scrape(asset_keywords)
         return news_data
     
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     logger.info("WebScraper 모듈 단독 실행 시작")
     scraper = WebScraper()
-    result = scraper.execute_scrape()
-    logger.info(f"최종 결과 데이터 수집 완료: {len(result) if result else 0}건")
-    print(result)
-    logger.info("WebScraper 모듈 단독 실행 종료")
-    
-    
+
 

@@ -83,7 +83,7 @@ if __name__ == "__main__":
         logger.info(f"calendar_data 수집 완료: {len(calendar_data) if calendar_data else 0}건")
 
     # 뉴스 정보 불러오기
-    # news_data = scraper.execute_scrape_news(asset_names=asset_names)
+    # news_data = scraper.execute_scrape_news(asset_keywords=asset_keywords)
     # 
 
     logger.info("========== 자동화 프로그램 종료 ==========")
