@@ -13,18 +13,26 @@ from webdriver_manager.chrome import ChromeDriverManager
 logger = logging.getLogger(__name__)
 
 class CalendarScraper:
-    def __init__(self, headless=False, chrome_version=146):
+    def __init__(self, headless=False, chrome_version=146, test_window=True):
         self.investing_url = "https://www.investing.com/economic-calendar/"
         self.options = uc.ChromeOptions()
         self.chrome_version = chrome_version
         self.headless = headless
+        self.test_window = test_window
+        
         
     def _scrape_investing(self):
         """
         Economic Calendar 데이터 수집
         중요도 3, This Week인 데이터만
         """
-        driver = uc.Chrome(version_main=self.chrome_version,headless=self.headless, use_subprocess=False)
+        if not self.test_window:
+            options = uc.ChromeOptions()
+            options.add_argument("--window-position=-2000,0") # 화면 밖으로 이동해서 화면에 안보이게 하기!!!
+            driver = uc.Chrome(options=options, version_main=self.chrome_version, headless=False)
+        else:
+            driver = uc.Chrome(version_main=self.chrome_version,headless=self.headless, use_subprocess=False)
+        
         try:
             for i in range(5):
                 try:
@@ -73,6 +81,9 @@ class CalendarScraper:
             for i in ele.find_elements(By.TAG_NAME, "tr"):
                 calendar_list.append(i.text.strip())
             logger.info("테이블 정보 딕셔너리로 저장 완료")
+        except Exception as e:
+            logger.error(f"경제 캘린더 정보 접근 실패, 캘린더 정보 수집을 스킵합니다. (사유: {e})")
+            return None
         finally:
             driver.quit()
 
@@ -149,6 +160,13 @@ class CalendarScraper:
         return cal_regulized
     
     def execute_scrape(self):
-        calendar_list = self._scrape_investing()
-        cal_regulized = self._preprocessing_calendar(calendar_list)
-        return cal_regulized
+        for attempt in range(2):
+            calendar_list = self._scrape_investing()
+            try:
+                cal_regulized = self._preprocessing_calendar(calendar_list)
+                if cal_regulized is not None:
+                    return cal_regulized
+            except Exception as e:
+                logger.warning(f"캘린더 데이터 전처리 실패  {attempt+1}/2 다시 사이트에 접근합니다. 사유: {e}")
+        logger.error("캘린더 데이터 전처리 최종 실패. None을 반환합니다.")
+        return None

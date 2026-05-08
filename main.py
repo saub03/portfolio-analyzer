@@ -23,7 +23,7 @@ def setup_global_logger():
         os.mkdir('data')
     
 
-# ========================== logger 설정 ==============================
+# ============================ logger 설정 ===============================
     BASE_DIR = Path(__file__).resolve().parent
     LOG_DIR = BASE_DIR / "logs" / "execute_logs"
     LOG_FILE = LOG_DIR / "execute_logs.log"
@@ -57,24 +57,33 @@ if __name__ == "__main__":
     
     '''
     1. 유저 포트폴리오 portfolio.json 읽어오기 
-        1) asset_names에 종목명 리스트 저장
+        1) asset_keywords에 종목명 리스트 저장
         2) TODO: AI에게 넘길 정보 저장 
     '''
     
-    logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 이름 추출 시작...")
+    logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
     userInfoReader = PortfolioReader()
-    asset_names = userInfoReader.NameForNews()
-    logger.info(f"포트폴리오 자산 이름 추출 완료: {len(asset_names)}건 {asset_names}")
+    asset_keywords = userInfoReader.keywordForNews()
+    logger.info(f"포트폴리오 자산 키워드 추출 완료: {len(asset_keywords)}건 {asset_keywords}")
     
     '''
-    2. 
+    2. WebScraper모듈 시작
+        1) investing.com 경제 캘린더 불러오기
+        2) asset_names를 기반으로 뉴스 검색해서 불러오기
     '''
     
-    scraper = WebScraper()
-    calendar_data = scraper.execute_scrape()
-    with open(f'logs/data_logs/calendar_data_{datetime.now().strftime("%Y%m%d")}.json', 'w', encoding='utf-8') as f:
-        json.dump(calendar_data, f, ensure_ascii=False, indent=4) # ensure_ascii로 유니코드 한글 변환
-    logger.info(f"calendar_data 수집 완료: {len(calendar_data) if calendar_data else 0}건")
-    
-    
+    # 캘린더 정보 불러오기
+    scraper = WebScraper(test_window=False)
+    calendar_data = scraper.execute_scrape_calendar()
+    if calendar_data is None:
+        logger.info("calendar_data가 비었습니다.")
+    else:
+        with open(f'logs/data_logs/calendar_data_{datetime.now().strftime("%Y%m%d")}.json', 'w', encoding='utf-8') as f:
+            json.dump(calendar_data, f, ensure_ascii=False, indent=4) # ensure_ascii로 유니코드 한글 변환
+        logger.info(f"calendar_data 수집 완료: {len(calendar_data) if calendar_data else 0}건")
+
+    # 뉴스 정보 불러오기
+    # news_data = scraper.execute_scrape_news(asset_names=asset_names)
+    # 
+
     logger.info("========== 자동화 프로그램 종료 ==========")
