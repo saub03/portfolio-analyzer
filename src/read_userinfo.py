@@ -32,15 +32,15 @@ class PortfolioReader:
     def __init__(self):
         self.df = read_portfolio()
         
-    def keywordForNews(self) -> list:
+    def NamesForNews(self) -> list:
         """
         내가 가진 자산의 키워드들만 가져옵니다.
         """
-        asset_keywords = []
+        asset_names = []
         for i, row in self.df.iterrows():
             for asset in row['assets']:
                 try:
-                    asset_keywords.append(asset['keyword'])
+                    asset_names.append(asset['name'])
                 except:
                     pass
-        return asset_keywords
+        return asset_names

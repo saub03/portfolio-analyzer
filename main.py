@@ -57,23 +57,23 @@ if __name__ == "__main__":
     
     '''
     1. 유저 포트폴리오 portfolio.json 읽어오기 
-        1) asset_keywords에 종목명 리스트 저장
+        1) asset_names에 종목명 리스트 저장
         2) TODO: AI에게 넘길 정보 저장 
     '''
     
     logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
     userInfoReader = PortfolioReader()
-    asset_keywords = userInfoReader.keywordForNews()
-    logger.info(f"포트폴리오 자산 키워드 추출 완료: {len(asset_keywords)}건 {asset_keywords}")
+    asset_names = userInfoReader.NamesForNews()
+    logger.info(f"포트폴리오 자산 키워드 추출 완료: {len(asset_names)}건 {asset_names}")
     
     '''
     2. WebScraper모듈 시작
         1) investing.com 경제 캘린더 불러오기
-        2) asset_names를 기반으로 뉴스 검색해서 불러오기
+        2) asset_names를 기반으로 제미나이에게 키워드 요청 -> 받은 키워드로 뉴스 스크랩
     '''
     
     # 캘린더 정보 불러오기
-    scraper = WebScraper(test_window=False)
+    scraper = WebScraper(chrome_version=148 ,test_window=False)
     calendar_data = scraper.execute_scrape_calendar()
     if calendar_data is None:
         logger.info("calendar_data가 비었습니다.")

@@ -10,5 +10,5 @@ logger = logging.getLogger(__name__)
 class NewsScraper:
     def __init__(self):
         pass
-    def execute_scrape(self, asset_keywords):
+    def execute_scrape(self, asset_names):
         pass

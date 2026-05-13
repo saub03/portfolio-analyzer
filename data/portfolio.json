@@ -1,18 +1,18 @@
 {
     "assets": {
         "stocks": [
-            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock", "keyword":"s&p500"},
-            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock", "keyword":"일본5대상사"}
+            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock"},
+            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock"}
             ],
         "bonds": [
-            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond", "keyword":"미국채권"}
+            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond"}
             ],
         "gold": [
-            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold", "keyword":"금현물"}
+            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold"}
             ],
         "crypto": [
-            {"name":"Bitcoin", "code":"BTC", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto", "keyword":"비트코인"},
-            {"name":"Solana", "code":"SOL", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto", "keyword":"솔라나"}
+            {"name":"Bitcoin", "code":"BTC", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto"},
+            {"name":"Solana", "code":"SOL", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto"}
             ],
         "cash": [
             {"KRW":1000000},
