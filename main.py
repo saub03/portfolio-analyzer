@@ -10,6 +10,7 @@ import glob
 from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
 from src.ai_analyzer import AIAnalyzer
+from src.statistical_analysis import PortfolioAnalyzer
 
 
 def setup_global_logger():
@@ -127,13 +128,29 @@ if __name__ == "__main__":
 
     '''
     5. 고급 통계분석
-        TODO:
-        PortfolioReader에서 목표 비중 읽어오기
-        현재 날짜로 유저 자산 정보 저장 -> 데이터 쌓이면 추이 확인 가능하게
-        목표 비중과 유저 자산 비중 차이.
-        MDD 분석, 상관계수 분석 등 구현하기
     '''
+    logger.info("고급 통계분석 시작...")
     target_ratio = userInfoReader.get_target_ratio()
     user_portfolio = userInfoReader.df
+    
+    try:
+        analyzer = PortfolioAnalyzer(user_portfolio=user_portfolio, target_ratio_df=target_ratio)
+        
+        # 1. 목표 비중과 현재 비중 차이
+        weight_diff_df = analyzer.get_weight_differences()
+        
+        # 2. 유저 자산 정보 저장 (추이 확인)
+        analyzer.save_daily_portfolio(save_dir="data")
+        
+        # 3. MDD 및 상관계수 분석 (ticker가 정의된 자산들 기준)
+        tickers = analyzer.extract_all_tickers()
+        if tickers:
+            mdd_series = analyzer.calculate_mdd(tickers=tickers)
+            corr_matrix = analyzer.calculate_correlation(tickers=tickers)
+        else:
+            logger.info("분석할 티커(ticker) 정보가 포트폴리오에 없습니다. (MDD, 상관계수 분석 생략)")
+            
+    except Exception as e:
+        logger.error(f"통계 분석 중 오류 발생: {e}")
     
     logger.info("========== 자동화 프로그램 종료 ==========")
