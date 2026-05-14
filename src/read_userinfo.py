@@ -47,37 +47,45 @@ class PortfolioReader:
         return asset_names
     
     def get_target_ratio(self) -> pd.DataFrame:
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.drop(['assets'], axis=1)
         df_temp['target_ratio'] = df_temp['target_ratio'].apply(lambda x:x/100)
         return df_temp
     
     def get_stocks_info(self):
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.loc['stocks']
         stocks = df_temp.drop('target_ratio').to_list()[0]
         return stocks
     
     def get_bonds_info(self):
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.loc['bonds']
         bonds = df_temp.drop('target_ratio').to_list()[0]
         return bonds
     
     def get_golds_info(self):
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.loc['gold']
         gold = df_temp.drop('target_ratio').to_list()[0]
         return gold
     
     def get_crypto_info(self):
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.loc['crypto']
         crypto = df_temp.drop('target_ratio').to_list()[0]
         return crypto
     
     def get_cash_info(self):
-        df_temp = self.df
+        df_temp = self.df.copy()
         df_temp = df_temp.loc['cash']
         cash = df_temp.drop('target_ratio').to_list()[0]
         return cash
+
+if __name__ == "__main__":
+    userInfoReader = PortfolioReader()
+    ratio = userInfoReader.get_target_ratio()
+    keys = ratio.index.tolist()
+    values = ratio['target_ratio'].tolist()
+    print(dict(zip(keys, values)))
+    print(ratio)

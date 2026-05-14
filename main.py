@@ -12,6 +12,7 @@ from src.read_userinfo import PortfolioReader
 from src.ai_analyzer import AIAnalyzer
 from src.statistical_analysis import StatisticalAnalyzer
 
+import pandas as pd
 
 def setup_global_logger():
     if not os.path.exists('logs'):
@@ -132,25 +133,24 @@ if __name__ == "__main__":
     logger.info("고급 통계분석 시작...")
     target_ratio = userInfoReader.get_target_ratio()
     user_portfolio = userInfoReader.df
+    stocks_info = userInfoReader.get_stocks_info()
+    bonds_info = userInfoReader.get_bonds_info()
+    golds_info = userInfoReader.get_golds_info()
+    crypto_info = userInfoReader.get_crypto_info()
+    cash_info = userInfoReader.get_cash_info()
+
+    staticAnalyzer = StatisticalAnalyzer(user_portfolio=user_portfolio, 
+                                        target_ratio_df=target_ratio,
+                                        stocks_info=stocks_info,
+                                        bonds_info=bonds_info,
+                                        golds_info=golds_info,
+                                        crypto_info=crypto_info,
+                                        cash_info=cash_info)
+    val = staticAnalyzer.current_values
+    logger.info(f"val: {val}")
     
-    try:
-        analyzer = StatisticalAnalyzer(user_portfolio=user_portfolio, target_ratio_df=target_ratio)
-        
-        # 1. 목표 비중과 현재 비중 차이
-        weight_diff_df = analyzer.get_weight_differences()
-        
-        # 2. 유저 자산 정보 저장 (추이 확인)
-        analyzer.save_daily_portfolio(save_dir="data")
-        
-        # 3. MDD 및 상관계수 분석 (ticker가 정의된 자산들 기준)
-        tickers = analyzer.extract_all_tickers()
-        if tickers:
-            mdd_series = analyzer.calculate_mdd(tickers=tickers)
-            corr_matrix = analyzer.calculate_correlation(tickers=tickers)
-        else:
-            logger.info("분석할 티커(ticker) 정보가 포트폴리오에 없습니다. (MDD, 상관계수 분석 생략)")
-            
-    except Exception as e:
-        logger.error(f"통계 분석 중 오류 발생: {e}")
+    diff = staticAnalyzer.get_weight_differences()
+    logger.info(f"diff: {diff}")
+    
     
     logger.info("========== 자동화 프로그램 종료 ==========")
