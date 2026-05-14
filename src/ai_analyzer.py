@@ -1,6 +1,7 @@
 import json
 import logging
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 logger = logging.getLogger(__name__)
 
@@ -12,11 +13,13 @@ class AIAnalyzer:
     def __init__(self, api_key):
         
         logger.info("GenerativeAI API 키 설정 중...")
-        # transport='rest' 옵션을 추가하여 gRPC 차단으로 인한 무한 대기 버그 해결
-        genai.configure(api_key=api_key, transport='rest')
-        
-        self.model = genai.GenerativeModel('gemini-2.5-flash')
-        logger.info("GenerativeModel(gemini-2.5-flash) 초기화 완료")
+        # 새로운 공식 SDK(google.genai)의 Client 객체 초기화
+        self.client = genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(timeout=15000) # 15초(15000ms) 타임아웃 설정
+        )
+        self.model_name = 'gemini-2.5-flash'
+        logger.info("genai.Client 초기화 완료 (모델: gemini-2.5-flash)")
         
     def generate_keywords(self, asset_names):
         '''
@@ -33,8 +36,11 @@ class AIAnalyzer:
         for i in range(3):
             try:
                 logger.info(f"키워드 생성 시도 중... {i+1}/3")
-                # timeout을 15초로 설정하여 무한 대기 현상 방지
-                response = self.model.generate_content(prompt, request_options={"timeout": 15})
+                
+                response = self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=prompt
+                )
                 text_response = response.text.strip()
 
                 # 마크다운 형식 예외처리
