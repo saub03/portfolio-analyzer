@@ -79,7 +79,7 @@ if __name__ == "__main__":
         2) AI에게 넘길 정보 저장 
     '''
     logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
-    asset_names = userInfoReader.NamesForNews()
+    asset_names = userInfoReader.names_for_news()
     logger.info(f"포트폴리오 자산 이름 추출 완료: {len(asset_names)}건 {asset_names}")
     
     '''
@@ -133,5 +133,7 @@ if __name__ == "__main__":
         목표 비중과 유저 자산 비중 차이.
         MDD 분석, 상관계수 분석 등 구현하기
     '''
+    target_ratio = userInfoReader.get_target_ratio()
+    user_portfolio = userInfoReader.df
     
     logger.info("========== 자동화 프로그램 종료 ==========")
