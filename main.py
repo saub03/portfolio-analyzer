@@ -84,14 +84,10 @@ if __name__ == "__main__":
     '''
     2. 추출한 자산 이름에서 제미나이 api로 키워드 추출.
     '''
-    keywords = aiAnalyzer.generate_keywords(asset_names)
-    
-    
+    asset_keywords = aiAnalyzer.generate_keywords(asset_names)
     
     '''
-    3. WebScraper모듈 시작
-        1) investing.com 경제 캘린더 불러오기
-        2) asset_names를 기반으로 제미나이에게 키워드 요청 -> 받은 키워드로 뉴스 스크랩
+    3. investing.com 경제 캘린더 불러오기
     '''
     # 캘린더 정보 불러오기
     for i in range(3):
@@ -99,7 +95,7 @@ if __name__ == "__main__":
             calendar_data = scraper.execute_scrape_calendar()
             break
         except Exception as e:
-            logger.
+            logger.warning(f"calendat_data 수집 실패. 다시시도 {i+1}/3")
             
     if calendar_data is None:
         logger.info("calendar_data가 비었습니다.")
@@ -108,8 +104,13 @@ if __name__ == "__main__":
             json.dump(calendar_data, f, ensure_ascii=False, indent=4) # ensure_ascii로 유니코드 한글 변환
         logger.info(f"calendar_data 수집 완료: {len(calendar_data) if calendar_data else 0}건")
 
-    # 뉴스 정보 불러오기
-    # news_data = scraper.execute_scrape_news(asset_keywords=asset_keywords)
-    # 
+    '''
+    4. 키워드로 뉴스 스크랩 후 json으로 저장
+    '''
+    news_data = scraper.execute_scrape_news(asset_keywords=asset_keywords)
+    if len(news_data) == 0:
+        logger.info("news_data가 비었습니다.")
+    else:
+        logger.info(f"news_data 수집 완료: {len(news_data) if news_data else 0}건")
 
     logger.info("========== 자동화 프로그램 종료 ==========")

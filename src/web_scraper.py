@@ -15,8 +15,8 @@ class WebScraper:
         calendar_data = self.calendar_scraper.execute_scrape()
         return calendar_data
     
-    def execute_scrape_news(self, asset_names):
-        news_data = self.news_scraper.execute_scrape(asset_names)
+    def execute_scrape_news(self, asset_keywords):
+        news_data = self.news_scraper.execute_scrape(asset_keywords)
         return news_data
     
 if __name__ == "__main__":
