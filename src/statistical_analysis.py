@@ -71,3 +71,52 @@ class StatisticalAnalyzer:
         logger.info("목표 비중과 현재 비중 차이 계산 완료")
         return weight_differences
         
+    def _get_all_tickers(self):
+        """포트폴리오에 포함된 모든 자산의 코드(티커) 목록 추출"""
+        tickers = []
+        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
+            for item in asset_list:
+                if 'code' in item:
+                    tickers.append(item['code'])
+        return list(set(tickers))
+
+    def get_historical_prices(self, start_date=None):
+        """FinanceDataReader를 활용하여 최근 1년치 가격 데이터를 수집"""
+        if start_date is None:
+            start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+        
+        tickers = self._get_all_tickers()
+        price_df = pd.DataFrame()
+        for ticker in tickers:
+            try:
+                df = fdr.DataReader(ticker, start_date)
+                if not df.empty and 'Close' in df.columns:
+                    price_df[ticker] = df['Close']
+            except Exception as e:
+                logger.warning(f"티커 {ticker}의 가격 정보를 불러오지 못했습니다: {e}")
+        return price_df
+
+    def calculate_mdd(self):
+        """각 자산의 MDD(Maximum Drawdown) 계산"""
+        logger.info("포트폴리오 자산 MDD 계산 중...")
+        price_df = self.get_historical_prices()
+        if price_df.empty:
+            logger.warning("가져온 가격 데이터가 없어 MDD를 계산할 수 없습니다.")
+            return pd.Series(dtype=float)
+        
+        roll_max = price_df.cummax()
+        drawdown = price_df / roll_max - 1.0
+        mdd = drawdown.min()
+        return mdd
+
+    def calculate_correlation(self):
+        """자산 간 상관계수 (Correlation) 분석"""
+        logger.info("포트폴리오 자산 상관계수 분석 중...")
+        price_df = self.get_historical_prices()
+        if price_df.empty:
+            logger.warning("가져온 가격 데이터가 없어 상관계수를 계산할 수 없습니다.")
+            return pd.DataFrame()
+            
+        daily_returns = price_df.pct_change().dropna()
+        corr_matrix = daily_returns.corr()
+        return corr_matrix

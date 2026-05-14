@@ -150,7 +150,13 @@ if __name__ == "__main__":
     logger.info(f"val: {val}")
     
     diff = staticAnalyzer.get_weight_differences()
-    logger.info(f"diff: {diff}")
+    logger.info(f"\ndiff: \n{diff}")
+    
+    mdd = staticAnalyzer.calculate_mdd()
+    logger.info(f"\nmdd: \n{mdd}")
+    
+    corr = staticAnalyzer.calculate_correlation()
+    logger.info(f"\ncorrelation: \n{corr}")
     
     
     logger.info("========== 자동화 프로그램 종료 ==========")
