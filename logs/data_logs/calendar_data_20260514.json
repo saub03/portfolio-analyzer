@@ -1,0 +1,162 @@
+[
+    {
+        "date": "2026-05-11",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Existing Home Sales (Apr)",
+        "actual": null,
+        "consensus": "4.02M 4.05M",
+        "previous": "4.01M"
+    },
+    {
+        "date": "2026-05-12",
+        "time": "15:00",
+        "country": "DE",
+        "event_type": "Indicator",
+        "event_name": "German CPI (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.6% 0.6%",
+        "previous": "1.1%"
+    },
+    {
+        "date": "2026-05-12",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "CPI (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.6% 0.6%",
+        "previous": "0.9%"
+    },
+    {
+        "date": "2026-05-12",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "CPI (YoY) (Apr)",
+        "actual": null,
+        "consensus": "3.8% 3.7%",
+        "previous": "3.3%"
+    },
+    {
+        "date": "2026-05-12",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Core CPI (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.4% 0.3%",
+        "previous": "0.2%"
+    },
+    {
+        "date": "2026-05-13",
+        "time": "02:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "10-Year Note Auction",
+        "actual": null,
+        "consensus": "4.468%",
+        "previous": "4.282%"
+    },
+    {
+        "date": "2026-05-13",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "PPI (MoM) (Apr)",
+        "actual": null,
+        "consensus": "1.4% 0.5%",
+        "previous": "0.7%"
+    },
+    {
+        "date": "2026-05-13",
+        "time": "23:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Crude Oil Inventories",
+        "actual": null,
+        "consensus": "-4.306M -2.000M",
+        "previous": "-2.313M"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "All Day",
+        "country": "CH",
+        "event_type": "Holiday",
+        "event_name": "Ascension Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-14",
+        "time": "02:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "30-Year Bond Auction",
+        "actual": null,
+        "consensus": "5.050%",
+        "previous": "4.876%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "15:00",
+        "country": "UK",
+        "event_type": "Indicator",
+        "event_name": "GDP (YoY) (Q1)",
+        "actual": null,
+        "consensus": "1.1% 0.8%",
+        "previous": "1.0%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "15:00",
+        "country": "UK",
+        "event_type": "Indicator",
+        "event_name": "GDP (MoM) (Mar)",
+        "actual": null,
+        "consensus": "0.3% -0.1%",
+        "previous": "0.4%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "15:09",
+        "country": "15:00",
+        "event_type": "Indicator",
+        "event_name": "UK",
+        "actual": "GDP (QoQ) (Q1)",
+        "consensus": "0.6% 0.6%",
+        "previous": "0.2%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Retail Sales (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.5%",
+        "previous": "1.7%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Core Retail Sales (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.7%",
+        "previous": "1.9%"
+    },
+    {
+        "date": "2026-05-14",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Initial Jobless Claims",
+        "actual": null,
+        "consensus": "205K",
+        "previous": "200K"
+    }
+]

@@ -82,7 +82,7 @@ class CalendarScraper:
                 calendar_list.append(i.text.strip())
             logger.info("테이블 정보 딕셔너리로 저장 완료")
         except Exception as e:
-            logger.error(f"경제 캘린더 정보 접근 실패, 캘린더 정보 수집을 스킵합니다. (사유: {e})")
+            logger.error(f"경제 캘린더 정보 접근 실패(사유: {e})")
             return None
         finally:
             driver.quit()

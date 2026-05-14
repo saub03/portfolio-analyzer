@@ -8,9 +8,8 @@ from datetime import datetime
 
 from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
+from src.ai_analyzer import AIAnalyzer
 
-
-load_dotenv()
 
 def setup_global_logger():
     if not os.path.exists('logs'):
@@ -31,10 +30,6 @@ def setup_global_logger():
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-    if not GEMINI_API_KEY:
-        raise ValueError("GEMINI_API_KEY를 등록해주세요")
-    
     if not logger.handlers:
         formatter = logging.Formatter('%(asctime)s - [%(name)s] %(levelname)s - %(message)s')
         
@@ -49,6 +44,7 @@ def setup_global_logger():
         logger.addHandler(stream_handler)
 # ==========================================================================
 
+
 if __name__ == "__main__":
     setup_global_logger()
     logger = logging.getLogger(__name__)
@@ -56,25 +52,55 @@ if __name__ == "__main__":
     logger.info("\n\n========== 자동화 프로그램 시작 ==========")
     
     '''
+    0. 객체 초기화
+    '''
+    load_dotenv()
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+    if not GEMINI_API_KEY:
+        logger.error("GEMINI_API_KEY 등록 실패. 프로그램 종료")
+        raise ValueError("GEMINI_API_KEY를 등록해주세요")
+    logger.info("GEMINI_API_KEY 등록 완료")
+    
+    aiAnalyzer = AIAnalyzer(api_key=GEMINI_API_KEY)
+    logger.info("aiAnalyzer 객체 초기화 완료")
+    
+
+    userInfoReader = PortfolioReader()
+    logger.info("userInfoReader 객체 초기화 완료")
+
+    scraper = WebScraper(chrome_version=148 ,test_window=False)
+    logger.info("scraper 객체 초기화 완료")
+    
+    
+    '''
     1. 유저 포트폴리오 portfolio.json 읽어오기 
         1) asset_names에 종목명 리스트 저장
         2) TODO: AI에게 넘길 정보 저장 
     '''
-    
     logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
-    userInfoReader = PortfolioReader()
     asset_names = userInfoReader.NamesForNews()
-    logger.info(f"포트폴리오 자산 키워드 추출 완료: {len(asset_names)}건 {asset_names}")
+    logger.info(f"포트폴리오 자산 이름 추출 완료: {len(asset_names)}건 {asset_names}")
     
     '''
-    2. WebScraper모듈 시작
+    2. 추출한 자산 이름에서 제미나이 api로 키워드 추출.
+    '''
+    keywords = aiAnalyzer.generate_keywords(asset_names)
+    
+    
+    
+    '''
+    3. WebScraper모듈 시작
         1) investing.com 경제 캘린더 불러오기
         2) asset_names를 기반으로 제미나이에게 키워드 요청 -> 받은 키워드로 뉴스 스크랩
     '''
-    
     # 캘린더 정보 불러오기
-    scraper = WebScraper(chrome_version=148 ,test_window=False)
-    calendar_data = scraper.execute_scrape_calendar()
+    for i in range(3):
+        try:
+            calendar_data = scraper.execute_scrape_calendar()
+            break
+        except Exception as e:
+            logger.
+            
     if calendar_data is None:
         logger.info("calendar_data가 비었습니다.")
     else:
