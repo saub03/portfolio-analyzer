@@ -8,14 +8,16 @@ import json
 
 logger = logging.getLogger(__name__)
 
-class PortfolioAnalyzer:
-    def __init__(self, user_portfolio, target_ratio_df):
-        """
-        user_portfolio: PortfolioReader.df (index: 자산군, columns: [target_ratio, assets])
-        target_ratio_df: PortfolioReader.get_target_ratio()
-        """
+class StatisticalAnalyzer:
+    def __init__(self, user_portfolio, target_ratio_df, stocks_info,
+                bonds_info, golds_info, crypto_info, cash_info):
         self.portfolio_df = user_portfolio
         self.target_ratio_df = target_ratio_df
+        self.stocks_info = stocks_info
+        self.bonds_info = bonds_info
+        self.golds_info = golds_info
+        self.crypto_info = crypto_info
+        self.cash_info = cash_info
         
         # 자산군별 현재 가치 계산
         self.current_values = self._calculate_current_values()
@@ -23,16 +25,21 @@ class PortfolioAnalyzer:
         
     def _calculate_current_values(self):
         """각 자산군별 총 평가금액을 계산합니다."""
+        week_ago = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        
         values = {}
-        for asset_class, row in self.portfolio_df.iterrows():
-            class_total = 0
-            assets = row.get('assets', [])
-            if isinstance(assets, list):
-                for asset in assets:
-                    # 'value'(평가금액)가 명시되어 있거나, 'amount'(수량) * 'price'(단가)로 계산 가능하다고 가정
-                    val = asset.get('value', asset.get('amount', 0) * asset.get('price', 0))
-                    class_total += val
-            values[asset_class] = class_total
+        for asset in ["stocks", "bonds", "gold", "crypto"]:
+            asset_amount = 0
+            for item in asset:
+                close = fdr.DataReader(item['code'], week_ago).tail(1)['Close']
+                asset_amount += close * item['quantity']
+            values[asset] = asset_amount
+            
+        cash_amount = 0
+        cash_amount += self.cash_info['KRW']
+        cash_amount += self.cash_info['USD'] * fdr.DataReader("USD/KRW", week_ago).tail(1)['Close'].iloc[0]
+        values['cash'] = cash_amount
+        
         return values
 
     def get_weight_differences(self):

@@ -10,7 +10,7 @@ import glob
 from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
 from src.ai_analyzer import AIAnalyzer
-from src.statistical_analysis import PortfolioAnalyzer
+from src.statistical_analysis import StatisticalAnalyzer
 
 
 def setup_global_logger():
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     user_portfolio = userInfoReader.df
     
     try:
-        analyzer = PortfolioAnalyzer(user_portfolio=user_portfolio, target_ratio_df=target_ratio)
+        analyzer = StatisticalAnalyzer(user_portfolio=user_portfolio, target_ratio_df=target_ratio)
         
         # 1. 목표 비중과 현재 비중 차이
         weight_diff_df = analyzer.get_weight_differences()

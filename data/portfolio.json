@@ -11,13 +11,12 @@
             {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold"}
             ],
         "crypto": [
-            {"name":"Bitcoin", "code":"BTC", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto"},
-            {"name":"Solana", "code":"SOL", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto"}
+            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto"},
+            {"name":"Solana", "code":"SOL/KRW", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto"}
             ],
-        "cash": [
-            {"KRW":1000000},
-            {"USD":100}
-            ]
+        "cash": {
+            "KRW":1000000, "USD":100
+            }
     },
     "target_ratio": {
         "stocks":50,
