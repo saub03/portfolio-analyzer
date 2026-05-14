@@ -125,4 +125,13 @@ if __name__ == "__main__":
         except Exception as e:
             logger.error(f"news_data 파일 저장 중 오류 발생: {e}")
 
+    '''
+    5. 고급 통계분석
+        TODO:
+        PortfolioReader에서 목표 비중 읽어오기
+        현재 날짜로 유저 자산 정보 저장 -> 데이터 쌓이면 추이 확인 가능하게
+        목표 비중과 유저 자산 비중 차이.
+        MDD 분석, 상관계수 분석 등 구현하기
+    '''
+    
     logger.info("========== 자동화 프로그램 종료 ==========")
