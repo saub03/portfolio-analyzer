@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import json
 from datetime import datetime
+import glob
 
 from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
@@ -75,7 +76,7 @@ if __name__ == "__main__":
     '''
     1. 유저 포트폴리오 portfolio.json 읽어오기 
         1) asset_names에 종목명 리스트 저장
-        2) TODO: AI에게 넘길 정보 저장 
+        2) AI에게 넘길 정보 저장 
     '''
     logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
     asset_names = userInfoReader.NamesForNews()
@@ -100,9 +101,14 @@ if __name__ == "__main__":
     if calendar_data is None:
         logger.info("calendar_data가 비었습니다.")
     else:
-        with open(f'logs/data_logs/calendar_data_{datetime.now().strftime("%Y%m%d")}.json', 'w', encoding='utf-8') as f:
-            json.dump(calendar_data, f, ensure_ascii=False, indent=4) # ensure_ascii로 유니코드 한글 변환
-        logger.info(f"calendar_data 수집 완료: {len(calendar_data) if calendar_data else 0}건")
+        try:
+            file_path = f'logs/data_logs/calendar_data_{datetime.now().strftime("%Y%m%d")}.json'
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(calendar_data, f, ensure_ascii=False, indent=4) # ensure_ascii로 유니코드 한글 변환
+            logger.info(f"calendar_data 파일 저장 완료: {file_path}, 총 {len(calendar_data)}건")
+        except Exception as e:
+            logger.error(f"calendar_data 파일 저장 중 오류 발생: {e}")
+    
 
     '''
     4. 키워드로 뉴스 스크랩 후 json으로 저장
@@ -111,6 +117,12 @@ if __name__ == "__main__":
     if len(news_data) == 0:
         logger.info("news_data가 비었습니다.")
     else:
-        logger.info(f"news_data 수집 완료: {len(news_data) if news_data else 0}건")
+        try:
+            file_path = f'logs/data_logs/news_data_{datetime.now().strftime("%Y%m%d")}.json'
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(news_data, f, ensure_ascii=False, indent=4)
+            logger.info(f"news_data 파일 저장 완료: {file_path}, 총 {len(news_data)}건")
+        except Exception as e:
+            logger.error(f"news_data 파일 저장 중 오류 발생: {e}")
 
     logger.info("========== 자동화 프로그램 종료 ==========")
