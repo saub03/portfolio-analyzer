@@ -128,3 +128,42 @@ class StatisticalAnalyzer:
                     
         corr_matrix.rename(columns=ticker_to_name, index=ticker_to_name, inplace=True)
         return corr_matrix
+
+    def calculate_returns(self):
+        """자산별 누적 수익률 및 총 수익률 계산"""
+        logger.info("자산별 누적 수익률 및 총 수익률 계산 중...")
+        price_df = self.get_historical_prices()
+        
+        returns_per_asset = {}
+        total_invested = 0
+        total_current = 0
+        
+        asset_lists = [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]
+        for asset_list in asset_lists:
+            for item in asset_list:
+                if 'code' in item and 'name' in item and 'avg_price' in item and 'quantity' in item:
+                    ticker = item['code']
+                    name = item['name']
+                    avg_price = item['avg_price']
+                    quantity = item['quantity']
+                    
+                    if not price_df.empty and ticker in price_df.columns:
+                        valid_prices = price_df[ticker].dropna()
+                        if not valid_prices.empty:
+                            current_price = valid_prices.iloc[-1]
+                            
+                            if avg_price > 0:
+                                asset_return = (current_price - avg_price) / avg_price
+                                returns_per_asset[name] = asset_return
+                            
+                            total_invested += avg_price * quantity
+                            total_current += current_price * quantity
+                            
+        total_return = 0
+        if total_invested > 0:
+            total_return = (total_current - total_invested) / total_invested
+            
+        return {
+            "assets_return": returns_per_asset,
+            "total_return": total_return
+        }

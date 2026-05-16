@@ -158,6 +158,9 @@ if __name__ == "__main__":
     corr = staticAnalyzer.calculate_correlation()
     logger.info(f"\ncorrelation: \n{corr}")
     
+    returns_info = staticAnalyzer.calculate_returns()
+    logger.info(f"\nreturns_info: \n{returns_info}")
+    
     '''
     6. 분석 결과 JSON 저장
     '''
@@ -165,7 +168,8 @@ if __name__ == "__main__":
         "current_values": val,
         "weight_differences": diff.to_dict(),
         "mdd": mdd.to_dict(),
-        "correlation": corr.to_dict()
+        "correlation": corr.to_dict(),
+        "returns": returns_info
     }
     
     try:
