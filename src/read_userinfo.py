@@ -89,3 +89,4 @@ if __name__ == "__main__":
     values = ratio['target_ratio'].tolist()
     print(dict(zip(keys, values)))
     print(ratio)
+    print(userInfoReader.get_stocks_info())

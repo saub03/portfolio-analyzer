@@ -158,5 +158,22 @@ if __name__ == "__main__":
     corr = staticAnalyzer.calculate_correlation()
     logger.info(f"\ncorrelation: \n{corr}")
     
+    '''
+    6. 분석 결과 JSON 저장
+    '''
+    user_data = {
+        "current_values": val,
+        "weight_differences": diff.to_dict(),
+        "mdd": mdd.to_dict(),
+        "correlation": corr.to_dict()
+    }
+    
+    try:
+        file_path = f'logs/data_logs/user_data_{datetime.now().strftime("%Y%m%d")}.json'
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(user_data, f, ensure_ascii=False, indent=4)
+        logger.info(f"user_data 파일 저장 완료: {file_path}")
+    except Exception as e:
+        logger.error(f"user_data 파일 저장 중 오류 발생: {e}")
     
     logger.info("========== 자동화 프로그램 종료 ==========")

@@ -119,4 +119,12 @@ class StatisticalAnalyzer:
             
         daily_returns = price_df.pct_change().dropna()
         corr_matrix = daily_returns.corr()
+        
+        ticker_to_name = {}
+        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
+            for item in asset_list:
+                if 'code' in item and 'name' in item:
+                    ticker_to_name[item['code']] = item['name']
+                    
+        corr_matrix.rename(columns=ticker_to_name, index=ticker_to_name, inplace=True)
         return corr_matrix
