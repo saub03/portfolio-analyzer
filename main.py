@@ -180,4 +180,36 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"user_data 파일 저장 중 오류 발생: {e}")
     
+    '''
+    7. calendar_data, news_data, user_data 결합, AI분석
+    '''
+    logger.info("데이터 취합 및 AI 분석 시작...")
+    today_str = datetime.now().strftime("%Y%m%d")
+    
+    # glob을 활용하여 오늘 날짜의 데이터 파일 찾기
+    calendar_files = glob.glob(f"logs/data_logs/calendar_data_{today_str}.json")
+    news_files = glob.glob(f"logs/data_logs/news_data_{today_str}.json")
+    user_files = glob.glob(f"logs/data_logs/user_data_{today_str}.json")
+    
+    def load_json_from_file(file_list):
+        if file_list and os.path.exists(file_list[0]):
+            with open(file_list[0], 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return None
+
+    loaded_calendar_data = load_json_from_file(calendar_files)
+    loaded_news_data = load_json_from_file(news_files)
+    loaded_user_data = load_json_from_file(user_files)
+    
+    ai_report = aiAnalyzer.generate_ai_report(
+        calendar_data=loaded_calendar_data,
+        news_data=loaded_news_data,
+        user_data=loaded_user_data
+    )
+    
+    # 로그 및 마크다운 파일로 저장
+    logger.info(f"\n[AI 분석 리포트]\n{ai_report}")
+    with open(f"logs/data_logs/ai_report_{today_str}.md", "w", encoding="utf-8") as f:
+        f.write(ai_report)
+    
     logger.info("========== 자동화 프로그램 종료 ==========")
