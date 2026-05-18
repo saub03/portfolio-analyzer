@@ -6,10 +6,10 @@
         "knowledge_level": "중급"
     },
     "financial_status": {
-        "total_assets": 21000000,
+        "total_assets": 26000000,
         "total_liabilities": 0,
-        "emergency_fund": 5000000,
-        "monthly_savings_capacity": 1000000
+        "emergency_fund": 1000000,
+        "monthly_savings_capacity": 0
     },
     "tax_info": {
         "country": "South Korea",
@@ -22,18 +22,18 @@
     },
     "assets": {
         "stocks": [
-            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock", "fee": 0.05, "dividend_yield": 0.5, "account": "ISA"},
-            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock", "fee": 0.45, "dividend_yield": 0.0, "account": "ISA"}
+            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock", "account": "ISA", "info": "장기 성장성 및 배당상승 기대감"},
+            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock", "account": "ISA", "info": "밸류업 기대"}
         ],
         "bonds": [
-            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond", "fee": 0.05, "dividend_yield": 3.5, "account": "ISA"}
+            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond", "account": "ISA", "info": "주식 시장 하락 대비 및 금리 인하 기대"}
         ],
         "gold": [
-            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold", "fee": 0.50, "dividend_yield": 0.0, "account": "ISA"}
+            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold", "account": "ISA", "info": "인플레이션 헤지 및 안전 자산"}
         ],
         "crypto": [
-            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto", "fee": 0.05, "account": "업비트"},
-            {"name":"Solana", "code":"SOL/KRW", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto", "fee": 0.05, "account": "업비트"}
+            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto", "account": "업비트", "info": "디지털 금으로서의 장기 가치 저장 수단"},
+            {"name":"Solana", "code":"SOL/KRW", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto", "account": "업비트", "info": "급등 예상 투기종목"}
         ],
         "cash": {
             "KRW":1000000, "USD":100
