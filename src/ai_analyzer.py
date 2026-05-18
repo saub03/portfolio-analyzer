@@ -2,6 +2,7 @@ import json
 import logging
 from google import genai
 from google.genai import types
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -86,9 +87,9 @@ class AIAnalyzer:
         4. 세제 혜택 및 현금 흐름 기반 리밸런싱 조언
         """
         
-        for attempt in range(2):
+        for attempt in range(3):
             try:
-                logger.info(f"AI 리포트 생성 시도 중... {attempt+1}/2")
+                logger.info(f"AI 리포트 생성 시도 중... {attempt+1}/3")
                 response = self.client.models.generate_content(
                     model=self.model_name,
                     contents=prompt
@@ -96,7 +97,9 @@ class AIAnalyzer:
                 logger.info("AI 종합 리포트 생성 완료")
                 return response.text.strip()
             except Exception as e:
-                logger.error(f"시도 {attempt+1}/2 실패: {e}")
+                logger.error(f"시도 {attempt+1}/3 실패: {e}")
+                logger.info("30초 후 프롬프트 생성을 재시도 합니다.")
+                time.sleep(30)
                 
         logger.error("AI 리포트 최종 생성 실패.")
         return "AI 리포트를 생성하는 데 실패했습니다."
