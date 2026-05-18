@@ -30,7 +30,13 @@ def read_portfolio():
 
 class PortfolioReader:
     def __init__(self):
-        self.df = read_portfolio()
+        with open(PORTFOLIO_PATH, 'r', encoding='utf-8') as f:
+            self.raw_data = json.load(f)
+            
+        self.df = pd.DataFrame({
+            "assets": self.raw_data.get("assets", {}),
+            "target_ratio": self.raw_data.get("target_ratio", {})
+        })
         
     def names_for_news(self) -> list:
         """
@@ -38,49 +44,44 @@ class PortfolioReader:
         """
         logger.info("포트폴리오 파일(portfolio.json) 읽기 및 자산 키워드 추출 시작...")
         asset_names = []
-        for i, row in self.df.iterrows():
-            for asset in row['assets']:
-                try:
-                    asset_names.append(asset['name'])
-                except:
-                    pass
+        assets_dict = self.raw_data.get("assets", {})
+        for asset_type, asset_list in assets_dict.items():
+            if isinstance(asset_list, list):
+                for asset in asset_list:
+                    if "name" in asset:
+                        asset_names.append(asset["name"])
         return asset_names
     
     def get_target_ratio(self) -> pd.DataFrame:
         df_temp = self.df.copy()
-        df_temp = df_temp.drop(['assets'], axis=1)
+        if 'assets' in df_temp.columns:
+            df_temp = df_temp.drop(['assets'], axis=1)
         df_temp['target_ratio'] = df_temp['target_ratio'].apply(lambda x:x/100)
         return df_temp
     
     def get_stocks_info(self):
-        df_temp = self.df.copy()
-        df_temp = df_temp.loc['stocks']
-        stocks = df_temp.drop('target_ratio').to_list()[0]
-        return stocks
+        return self.raw_data.get("assets", {}).get("stocks", [])
     
     def get_bonds_info(self):
-        df_temp = self.df.copy()
-        df_temp = df_temp.loc['bonds']
-        bonds = df_temp.drop('target_ratio').to_list()[0]
-        return bonds
+        return self.raw_data.get("assets", {}).get("bonds", [])
     
     def get_golds_info(self):
-        df_temp = self.df.copy()
-        df_temp = df_temp.loc['gold']
-        gold = df_temp.drop('target_ratio').to_list()[0]
-        return gold
+        return self.raw_data.get("assets", {}).get("gold", [])
     
     def get_crypto_info(self):
-        df_temp = self.df.copy()
-        df_temp = df_temp.loc['crypto']
-        crypto = df_temp.drop('target_ratio').to_list()[0]
-        return crypto
+        return self.raw_data.get("assets", {}).get("crypto", [])
     
     def get_cash_info(self):
-        df_temp = self.df.copy()
-        df_temp = df_temp.loc['cash']
-        cash = df_temp.drop('target_ratio').to_list()[0]
-        return cash
+        return self.raw_data.get("assets", {}).get("cash", {})
+
+    def get_user_profile(self):
+        return self.raw_data.get("user_profile", {})
+
+    def get_financial_status(self):
+        return self.raw_data.get("financial_status", {})
+
+    def get_tax_info(self):
+        return self.raw_data.get("tax_info", {})
 
 if __name__ == "__main__":
     userInfoReader = PortfolioReader()

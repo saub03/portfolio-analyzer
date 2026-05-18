@@ -16,7 +16,7 @@ class AIAnalyzer:
         # 새로운 공식 SDK(google.genai)의 Client 객체 초기화
         self.client = genai.Client(
             api_key=api_key,
-            http_options=types.HttpOptions(timeout=60000) # 타임아웃 설정
+            http_options=types.HttpOptions(timeout=100000) # 타임아웃 설정
         )
         self.model_name = 'gemini-2.5-flash'
         logger.info("genai.Client 초기화 완료 (모델: gemini-2.5-flash)")
@@ -63,29 +63,26 @@ class AIAnalyzer:
         """
         logger.info("AI 종합 리포트 생성 요청 중...")
         
-        prompt = f"""
-        아래에 제공된 사용자의 포트폴리오 통계 데이터, 경제 캘린더 데이터, 관련 뉴스 데이터를 바탕으로 
-        오늘의 포트폴리오 분석 및 시황 요약 리포트를 작성해주세요.
+        prompt = f""" 
+        당신은 세무 지식과 금융 공학에 능통한 수석 프라이빗 뱅커(PB)입니다. 
+        아래에 제공된 사용자의 프로필, 재정 상태, 포트폴리오 통계 데이터, 경제 캘린더, 관련 뉴스 데이터를 바탕으로 초개인화된 종합 자산관리 리포트를 작성해주세요.
 
         [데이터]
-        1. 포트폴리오 통계 (user_data): {json.dumps(user_data, ensure_ascii=False) if user_data else '데이터 없음'}
+        1. 포트폴리오 및 사용자 정보 (user_data): {json.dumps(user_data, ensure_ascii=False) if user_data else '데이터 없음'}
         2. 경제 캘린더 (calendar_data): {json.dumps(calendar_data, ensure_ascii=False) if calendar_data else '데이터 없음'}
         3. 관련 뉴스 (news_data): {json.dumps(news_data, ensure_ascii=False) if news_data else '데이터 없음'}
 
-        [요구사항]
-        - 시장 시황 요약 (주요 뉴스 및 경제 지표 일정 기반)
-        - 포트폴리오 현재 상태 및 위험도 평가 (MDD, 상관계수, 목표 비중 괴리율 등 데이터 활용)
-        - 향후 대응 전략 및 조언
-        - 이메일 본문으로 들어갈 수 있도록 HTML이 아닌 마크다운(Markdown) 형식을 사용하여 가독성 있게 작성
-        - 본문만 작성하고 누구에게, 누구드림은 작성 금지
-        """
-        
-        test_prompt = f"""
-        [데이터]
-        1. 포트폴리오 통계 (user_data): {json.dumps(user_data, ensure_ascii=False) if user_data else '데이터 없음'}
-        2. 경제 캘린더 (calendar_data): {json.dumps(calendar_data, ensure_ascii=False) if calendar_data else '데이터 없음'}
-        3. 관련 뉴스 (news_data): {json.dumps(news_data, ensure_ascii=False) if news_data else '데이터 없음'}
-        AI가 사용자 포트폴리오를 분석하는데 이 세 가지 정보 말고 필요한 정보 더 있어?
+        [지침 및 제약 조건]
+        - 사용자의 투자 성향과 재무 상태(월 저축 여력 등)를 반드시 고려하여 조언의 방향성을 설정하세요.
+        - 샤프 지수, 변동성, 베타, MDD, 수익률 등의 통계 데이터를 활용하여 포트폴리오 성과와 효율성을 분석하세요.
+        - 사용자의 세금 정보와 보유 계좌(account) 유형을 고려하여, 절세 측면에서 유리한 리밸런싱 및 추가 매수 전략을 포함하세요.
+        - 이메일 본문으로 사용할 수 있도록 가독성이 좋은 마크다운(Markdown) 형식으로 작성하세요. (인사말이나 맺음말 등 불필요한 텍스트는 제외)
+
+        [리포트 목차 (반드시 아래 구조를 따를 것)]
+        1. 시장 시황 및 주요 경제 지표 요약
+        2. 포트폴리오 성과 및 위험 지표 종합 분석
+        3. 투자자 성향 및 재무 상태 진단
+        4. 세제 혜택 및 현금 흐름 기반 리밸런싱 조언
         """
         
         for attempt in range(2):
@@ -93,7 +90,7 @@ class AIAnalyzer:
                 logger.info(f"AI 리포트 생성 시도 중... {attempt+1}/2")
                 response = self.client.models.generate_content(
                     model=self.model_name,
-                    contents=test_prompt
+                    contents=prompt
                 )
                 logger.info("AI 종합 리포트 생성 완료")
                 return response.text.strip()

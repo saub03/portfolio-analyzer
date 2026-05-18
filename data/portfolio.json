@@ -1,22 +1,43 @@
 {
+    "user_profile": {
+        "investment_goal": "은퇴 자금 마련 및 자산 증식",
+        "time_horizon": "20년 이상",
+        "risk_tolerance": "균형 성장형",
+        "knowledge_level": "중급"
+    },
+    "financial_status": {
+        "total_assets": 21000000,
+        "total_liabilities": 0,
+        "emergency_fund": 5000000,
+        "monthly_savings_capacity": 1000000
+    },
+    "tax_info": {
+        "country": "South Korea",
+        "tax_bracket": "근로소득세 과세표준 15% 구간",
+        "account_types": [
+            {"type": "일반계좌", "description": "해외 주식 양도소득세 22%, 국내 배당소득세 15.4%"},
+            {"type": "ISA", "description": "만기 시 200만원 비과세 및 9.9% 분리과세"},
+            {"type": "연금저축펀드", "description": "연말정산 세액공제 및 과세이연 효과"}
+        ]
+    },
     "assets": {
         "stocks": [
-            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock"},
-            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock"}
-            ],
+            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":180, "avg_price":22552, "currency":"KRW", "type":"us_stock", "fee": 0.05, "dividend_yield": 0.5, "account": "ISA"},
+            {"name":"한투 일본종합상사TOP5 ETN", "code":"570100", "quantity":93, "avg_price":18670, "currency":"KRW", "type":"jp_stock", "fee": 0.45, "dividend_yield": 0.0, "account": "ISA"}
+        ],
         "bonds": [
-            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond"}
-            ],
+            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":100, "avg_price":7583, "currency":"KRW", "type":"us_bond", "fee": 0.05, "dividend_yield": 3.5, "account": "ISA"}
+        ],
         "gold": [
-            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold"}
-            ],
+            {"name":"ACE KRX금현물", "code":"411060", "quantity":10, "avg_price":30000, "currency":"KRW", "type":"gold", "fee": 0.50, "dividend_yield": 0.0, "account": "ISA"}
+        ],
         "crypto": [
-            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto"},
-            {"name":"Solana", "code":"SOL/KRW", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto"}
-            ],
+            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.05, "avg_price":100000000, "currency":"KRW", "type":"crypto", "fee": 0.05, "account": "업비트"},
+            {"name":"Solana", "code":"SOL/KRW", "quantity":1, "avg_price":200000, "currency":"KRW", "type":"crypto", "fee": 0.05, "account": "업비트"}
+        ],
         "cash": {
             "KRW":1000000, "USD":100
-            }
+        }
     },
     "target_ratio": {
         "stocks":50,

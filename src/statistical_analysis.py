@@ -80,6 +80,14 @@ class StatisticalAnalyzer:
                     tickers.append(item['code'])
         return list(set(tickers))
 
+    def _get_ticker_to_name_mapping(self):
+        ticker_to_name = {}
+        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
+            for item in asset_list:
+                if 'code' in item and 'name' in item:
+                    ticker_to_name[item['code']] = item['name']
+        return ticker_to_name
+
     def get_historical_prices(self, start_date=None):
         """FinanceDataReader를 활용하여 최근 1년치 가격 데이터를 수집"""
         if start_date is None:
@@ -107,7 +115,9 @@ class StatisticalAnalyzer:
         roll_max = price_df.cummax()
         drawdown = price_df / roll_max - 1.0
         mdd = drawdown.min()
-        return mdd
+        
+        ticker_to_name = self._get_ticker_to_name_mapping()
+        return mdd.rename(index=ticker_to_name)
 
     def calculate_correlation(self):
         """자산 간 상관계수 (Correlation) 분석"""
@@ -120,14 +130,71 @@ class StatisticalAnalyzer:
         daily_returns = price_df.pct_change().dropna()
         corr_matrix = daily_returns.corr()
         
-        ticker_to_name = {}
-        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
-            for item in asset_list:
-                if 'code' in item and 'name' in item:
-                    ticker_to_name[item['code']] = item['name']
-                    
+        ticker_to_name = self._get_ticker_to_name_mapping()
         corr_matrix.rename(columns=ticker_to_name, index=ticker_to_name, inplace=True)
         return corr_matrix
+
+    def calculate_volatility(self, annualize_factor=252):
+        """각 자산의 연간 변동성(Volatility) 계산"""
+        logger.info("자산별 연간 변동성 계산 중...")
+        price_df = self.get_historical_prices()
+        if price_df.empty:
+            return pd.Series(dtype=float)
+            
+        daily_returns = price_df.pct_change().dropna()
+        volatility = daily_returns.std() * np.sqrt(annualize_factor)
+        
+        ticker_to_name = self._get_ticker_to_name_mapping()
+        return volatility.rename(index=ticker_to_name)
+
+    def calculate_sharpe_ratio(self, risk_free_rate=0.03, annualize_factor=252):
+        """각 자산의 샤프 지수 계산 (무위험 수익률 3% 가정)"""
+        logger.info("자산별 샤프 지수 계산 중...")
+        price_df = self.get_historical_prices()
+        if price_df.empty:
+            return pd.Series(dtype=float)
+            
+        daily_returns = price_df.pct_change().dropna()
+        annual_returns = daily_returns.mean() * annualize_factor
+        annual_volatility = daily_returns.std() * np.sqrt(annualize_factor)
+        
+        sharpe_ratio = (annual_returns - risk_free_rate) / annual_volatility
+        
+        ticker_to_name = self._get_ticker_to_name_mapping()
+        return sharpe_ratio.rename(index=ticker_to_name)
+
+    def calculate_beta(self, benchmark_ticker="SPY"):
+        """벤치마크 대비 각 자산의 베타(Beta) 계산"""
+        logger.info(f"자산별 베타 계산 중 (벤치마크: {benchmark_ticker})...")
+        price_df = self.get_historical_prices()
+        if price_df.empty:
+            return pd.Series(dtype=float)
+            
+        start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+        try:
+            benchmark_df = fdr.DataReader(benchmark_ticker, start_date)
+            if benchmark_df.empty or 'Close' not in benchmark_df.columns:
+                raise ValueError("벤치마크 데이터 없음")
+            benchmark_returns = benchmark_df['Close'].pct_change().dropna()
+        except Exception as e:
+            logger.warning(f"베타 계산 실패: {e}")
+            return pd.Series(dtype=float)
+            
+        daily_returns = price_df.pct_change().dropna()
+        aligned_data = pd.concat([daily_returns, benchmark_returns.rename('Benchmark')], axis=1).dropna()
+        
+        betas = {}
+        benchmark_var = aligned_data['Benchmark'].var()
+        if benchmark_var == 0:
+            return pd.Series(dtype=float)
+            
+        for col in daily_returns.columns:
+            cov = aligned_data[col].cov(aligned_data['Benchmark'])
+            betas[col] = cov / benchmark_var
+            
+        beta_series = pd.Series(betas)
+        ticker_to_name = self._get_ticker_to_name_mapping()
+        return beta_series.rename(index=ticker_to_name)
 
     def calculate_returns(self):
         """자산별 누적 수익률 및 총 수익률 계산"""

@@ -161,15 +161,35 @@ if __name__ == "__main__":
     returns_info = staticAnalyzer.calculate_returns()
     logger.info(f"\nreturns_info: \n{returns_info}")
     
+    volatility = staticAnalyzer.calculate_volatility()
+    logger.info(f"\nvolatility: \n{volatility}")
+    
+    sharpe = staticAnalyzer.calculate_sharpe_ratio()
+    logger.info(f"\nsharpe_ratio: \n{sharpe}")
+    
+    beta = staticAnalyzer.calculate_beta()
+    logger.info(f"\nbeta: \n{beta}")
+    
     '''
     6. 분석 결과 JSON 저장
     '''
     user_data = {
-        "current_values": val,
-        "weight_differences": diff.to_dict(),
-        "mdd": mdd.to_dict(),
-        "correlation": corr.to_dict(),
-        "returns": returns_info
+        "investor_profile": {
+            "user_profile": userInfoReader.get_user_profile(),
+            "financial_status": userInfoReader.get_financial_status(),
+            "tax_info": userInfoReader.get_tax_info()
+        },
+        "portfolio_holdings": userInfoReader.raw_data.get("assets", {}),
+        "risk_and_performance": {
+            "current_values": val,
+            "weight_differences": diff.to_dict(),
+            "mdd": mdd.to_dict(),
+            "correlation": corr.to_dict(),
+            "returns": returns_info,
+            "volatility": volatility.to_dict(),
+            "sharpe_ratio": sharpe.to_dict(),
+            "beta": beta.to_dict()
+        }
     }
     
     try:
