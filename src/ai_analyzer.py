@@ -55,6 +55,8 @@ class AIAnalyzer:
                 return keywords
             except Exception as e:
                 logger.error(f"시도 {i+1}/3 실패: {e}")
+                logger.info("30초 후 프롬프트 생성을 재시도 합니다.")
+                time.sleep(30)
         logger.error("keyword요청 실패. 원본 자산 리스트를 반환합니다.")
         return asset_names
 
