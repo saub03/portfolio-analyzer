@@ -82,6 +82,10 @@ class PortfolioReader:
 
     def get_tax_info(self):
         return self.raw_data.get("tax_info", {})
+    
+    def get_alts_info(self):
+        return self.raw_data.get("assets", {}).get("alternative", [])
+
 
 if __name__ == "__main__":
     userInfoReader = PortfolioReader()

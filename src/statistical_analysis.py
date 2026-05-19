@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class StatisticalAnalyzer:
     def __init__(self, user_portfolio, target_ratio_df, stocks_info,
-                bonds_info, golds_info, crypto_info, cash_info):
+                bonds_info, golds_info, crypto_info, cash_info, alts_info):
         self.portfolio_df = user_portfolio
         self.target_ratio_df = target_ratio_df
         self.stocks_info = stocks_info
@@ -18,6 +18,7 @@ class StatisticalAnalyzer:
         self.golds_info = golds_info
         self.crypto_info = crypto_info
         self.cash_info = cash_info
+        self.alts_info = alts_info
         
         # 자산군별 현재 가치 계산
         self.current_values = self._calculate_current_values()
@@ -31,7 +32,8 @@ class StatisticalAnalyzer:
             "stocks": self.stocks_info,
             "bonds": self.bonds_info,
             "gold": self.golds_info,
-            "crypto": self.crypto_info
+            "crypto": self.crypto_info,
+            "alternative": self.alts_info
         }
         
         for asset_name, asset_list in asset_mapping.items():
@@ -54,6 +56,49 @@ class StatisticalAnalyzer:
         
         return values
 
+    def _calculate_invested_values(self):
+        """각 자산군별 투자 원금(매수 단가 * 수량)을 계산합니다."""
+        values = {}
+        asset_mapping = {
+            "stocks": self.stocks_info,
+            "bonds": self.bonds_info,
+            "gold": self.golds_info,
+            "crypto": self.crypto_info,
+            "alternative": self.alts_info
+        }
+        
+        for asset_name, asset_list in asset_mapping.items():
+            asset_amount = 0
+            for item in asset_list:
+                if 'avg_price' in item and 'quantity' in item:
+                    asset_amount += item['avg_price'] * item['quantity']
+            values[asset_name] = int(asset_amount)
+            
+        # 현금은 원금과 현재 가치를 동일하게 처리
+        values['cash'] = self.current_values.get('cash', 0)
+        
+        return values
+
+    def calculate_profit_loss(self):
+        """자산군별 투자 원금 대비 증감액 및 증감률(시리즈 데이터) 생성"""
+        logger.info("자산군별 투자 원금 대비 증감액/증감률 계산 중...")
+        profit_loss = {}
+        invested = self._calculate_invested_values()
+        current = self.current_values
+        
+        for key in current.keys():
+            inv = invested.get(key, 0)
+            cur = current.get(key, 0)
+            diff = cur - inv
+            ratio = (diff / inv * 100) if inv > 0 else 0
+            profit_loss[key] = {
+                "invested_principal": inv,
+                "current_value": cur,
+                "profit_loss_amount": diff,
+                "profit_loss_ratio_pct": round(ratio, 2)
+            }
+        return profit_loss
+
     def get_weight_differences(self):
         """목표 비중과 현재 비중의 차이 계산"""
         logger.info("목표 비중과 현재 비중 차이 계산 중...")
@@ -74,7 +119,7 @@ class StatisticalAnalyzer:
     def _get_all_tickers(self):
         """포트폴리오에 포함된 모든 자산의 코드(티커) 목록 추출"""
         tickers = []
-        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
+        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info, self.alts_info]:
             for item in asset_list:
                 if 'code' in item:
                     tickers.append(item['code'])
@@ -82,7 +127,7 @@ class StatisticalAnalyzer:
 
     def _get_ticker_to_name_mapping(self):
         ticker_to_name = {}
-        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]:
+        for asset_list in [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info, self.alts_info]:
             for item in asset_list:
                 if 'code' in item and 'name' in item:
                     ticker_to_name[item['code']] = item['name']
@@ -205,7 +250,7 @@ class StatisticalAnalyzer:
         total_invested = 0
         total_current = 0
         
-        asset_lists = [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info]
+        asset_lists = [self.stocks_info, self.bonds_info, self.golds_info, self.crypto_info, self.alts_info]
         for asset_list in asset_lists:
             for item in asset_list:
                 if 'code' in item and 'name' in item and 'avg_price' in item and 'quantity' in item:

@@ -8,6 +8,7 @@
     "financial_status": {
         "total_assets": 26000000,
         "total_liabilities": 0,
+        "total_invested_principal": 21650000,
         "emergency_fund": 1000000,
         "monthly_savings_capacity": 0
     },
@@ -33,7 +34,9 @@
             {"name":"RISE 국고채 10년액티브", "code":"481430", "quantity":28, "avg_price":99898, "currency":"KRW", "type":"us_bond", "account": "ISA", "info": "주식 시장 하락 대비"}
         ],
         "gold": [
-            {"name":"ACE KRX금현물", "code":"411060", "quantity":46, "avg_price":30670, "currency":"KRW", "type":"gold", "account": "ISA", "info": "인플레이션 헤지 및 안전 자산"},
+            {"name":"ACE KRX금현물", "code":"411060", "quantity":46, "avg_price":30670, "currency":"KRW", "type":"gold", "account": "ISA", "info": "인플레이션 헤지 및 안전 자산"}
+        ],
+        "alternative": [
             {"name":"KODEX 한국부동산리츠인프라", "code":"476800", "quantity":595, "avg_price":4740, "currency":"KRW", "type":"realestate", "account": "ISA", "info": "금리 인하 기대감 및 자산 배분"}
         ],
         "crypto": [
@@ -47,9 +50,10 @@
     },
     "target_ratio": {
         "stocks":50,
-        "bonds":30,
+        "bonds":20,
         "gold":5,
-        "crypto":10,
-        "cash":5
+        "alternative":10,
+        "crypto":15,
+        "cash":0
     }
 }

@@ -56,7 +56,7 @@
             {
                 "name": "KODEX 미국나스닥100",
                 "code": "379810",
-                "quantity": 74,
+                "quantity": 7,
                 "avg_price": 22552,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -66,7 +66,7 @@
             {
                 "name": "TIGER 미국배당다우존스",
                 "code": "458730",
-                "quantity": 191,
+                "quantity": 1,
                 "avg_price": 14740,
                 "currency": "KRW",
                 "type": "jp_stock",
@@ -76,7 +76,7 @@
             {
                 "name": "KODEX 미국나스닥100데일리커버드콜OTM",
                 "code": "494300",
-                "quantity": 202,
+                "quantity": 2,
                 "avg_price": 10069,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -88,7 +88,7 @@
             {
                 "name": "ACE 미국30년국채액티브(H)",
                 "code": "453850",
-                "quantity": 378,
+                "quantity": 38,
                 "avg_price": 7466,
                 "currency": "KRW",
                 "type": "us_bond",
@@ -98,7 +98,7 @@
             {
                 "name": "RISE 국고채 10년액티브",
                 "code": "481430",
-                "quantity": 28,
+                "quantity": 8,
                 "avg_price": 99898,
                 "currency": "KRW",
                 "type": "us_bond",
@@ -110,7 +110,7 @@
             {
                 "name": "ACE KRX금현물",
                 "code": "411060",
-                "quantity": 46,
+                "quantity": 6,
                 "avg_price": 30670,
                 "currency": "KRW",
                 "type": "gold",
@@ -169,12 +169,12 @@
     },
     "risk_and_performance": {
         "current_values": {
-            "stocks": 11444780,
-            "bonds": 5483310,
-            "gold": 1393570,
-            "crypto": 4657772,
-            "alternative": 2683450,
-            "cash": 154779
+            "stocks": 11517304,
+            "bonds": 5572440,
+            "gold": 1403511,
+            "crypto": 4540076,
+            "alternative": 2660256,
+            "cash": 144938
         },
         "weight_differences": {
             "current_ratio": {

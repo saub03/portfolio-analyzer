@@ -11,6 +11,7 @@ from src.web_scraper import WebScraper
 from src.read_userinfo import PortfolioReader
 from src.ai_analyzer import AIAnalyzer
 from src.statistical_analysis import StatisticalAnalyzer
+from src.graphs import get_graph
 
 import pandas as pd
 
@@ -138,6 +139,7 @@ if __name__ == "__main__":
     golds_info = userInfoReader.get_golds_info()
     crypto_info = userInfoReader.get_crypto_info()
     cash_info = userInfoReader.get_cash_info()
+    alts_info = userInfoReader.get_alts_info()
 
     staticAnalyzer = StatisticalAnalyzer(user_portfolio=user_portfolio, 
                                         target_ratio_df=target_ratio,
@@ -145,10 +147,14 @@ if __name__ == "__main__":
                                         bonds_info=bonds_info,
                                         golds_info=golds_info,
                                         crypto_info=crypto_info,
-                                        cash_info=cash_info)
+                                        cash_info=cash_info,
+                                        alts_info=alts_info)
     val = staticAnalyzer.current_values
     logger.info(f"val: {val}")
     
+    profit_loss = staticAnalyzer.calculate_profit_loss()
+    logger.info(f"\nprofit_loss: \n{profit_loss}")
+
     diff = staticAnalyzer.get_weight_differences()
     logger.info(f"\ndiff: \n{diff}")
     
@@ -182,6 +188,7 @@ if __name__ == "__main__":
         "portfolio_holdings": userInfoReader.raw_data.get("assets", {}),
         "risk_and_performance": {
             "current_values": val,
+            "profit_loss_summary": profit_loss,
             "weight_differences": diff.to_dict(),
             "mdd": mdd.to_dict(),
             "correlation": corr.to_dict(),
@@ -231,5 +238,13 @@ if __name__ == "__main__":
     logger.info(f"\n[AI 분석 리포트]\n{ai_report}")
     with open(f"logs/data_logs/ai_report_{today_str}.md", "w", encoding="utf-8") as f:
         f.write(ai_report)
+    
+    '''
+    8. 그래프 만들기
+    '''
+    logger.info("시계열 자산 그래프 생성 시작...")
+    graph_generator = get_graph()
+    graph_generator.create_stacked_bar_chart_from_logs()
+    logger.info("시계열 자산 그래프 생성 완료.")
     
     logger.info("========== 자동화 프로그램 종료 ==========")

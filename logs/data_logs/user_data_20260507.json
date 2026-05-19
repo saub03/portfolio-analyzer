@@ -36,7 +36,7 @@
             {
                 "name": "KODEX 미국S&P500데일리커버드콜OTM",
                 "code": "0005A0",
-                "quantity": 210,
+                "quantity": 21,
                 "avg_price": 10075,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -46,7 +46,7 @@
             {
                 "name": "KODEX 미국S&P500",
                 "code": "379800",
-                "quantity": 86,
+                "quantity": 8,
                 "avg_price": 21521,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -56,7 +56,7 @@
             {
                 "name": "KODEX 미국나스닥100",
                 "code": "379810",
-                "quantity": 74,
+                "quantity": 7,
                 "avg_price": 22552,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -66,7 +66,7 @@
             {
                 "name": "TIGER 미국배당다우존스",
                 "code": "458730",
-                "quantity": 191,
+                "quantity": 19,
                 "avg_price": 14740,
                 "currency": "KRW",
                 "type": "jp_stock",
@@ -76,7 +76,7 @@
             {
                 "name": "KODEX 미국나스닥100데일리커버드콜OTM",
                 "code": "494300",
-                "quantity": 202,
+                "quantity": 20,
                 "avg_price": 10069,
                 "currency": "KRW",
                 "type": "us_stock",
@@ -169,12 +169,12 @@
     },
     "risk_and_performance": {
         "current_values": {
-            "stocks": 11444780,
-            "bonds": 5483310,
-            "gold": 1393570,
-            "crypto": 4657772,
-            "alternative": 2683450,
-            "cash": 154779
+            "stocks": 11497829,
+            "bonds": 5501260,
+            "gold": 1420077,
+            "crypto": 4562671,
+            "alternative": 2665341,
+            "cash": 147779
         },
         "weight_differences": {
             "current_ratio": {

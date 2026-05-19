@@ -169,12 +169,12 @@
     },
     "risk_and_performance": {
         "current_values": {
-            "stocks": 11444780,
-            "bonds": 5483310,
-            "gold": 1393570,
-            "crypto": 4657772,
-            "alternative": 2683450,
-            "cash": 154779
+            "stocks": 11479232,
+            "bonds": 5484624,
+            "gold": 1407666,
+            "crypto": 4648942,
+            "alternative": 2719448,
+            "cash": 153488
         },
         "weight_differences": {
             "current_ratio": {
