@@ -1,0 +1,202 @@
+[
+    {
+        "date": "2026-05-25",
+        "time": "All Day",
+        "country": "HK",
+        "event_type": "Holiday",
+        "event_name": "The Birthday of the Buddha",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-25",
+        "time": "All Day",
+        "country": "KR",
+        "event_type": "Holiday",
+        "event_name": "Vesak Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-25",
+        "time": "All Day",
+        "country": "CH",
+        "event_type": "Holiday",
+        "event_name": "Whit Monday",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-25",
+        "time": "All Day",
+        "country": "UK",
+        "event_type": "Holiday",
+        "event_name": "Spring Bank Holiday",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-25",
+        "time": "All Day",
+        "country": "US",
+        "event_type": "Holiday",
+        "event_name": "Memorial Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-26",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "CB Consumer Confidence (May)",
+        "actual": null,
+        "consensus": "93.1 91.9",
+        "previous": "93.8"
+    },
+    {
+        "date": "2026-05-27",
+        "time": "All Day",
+        "country": "SG",
+        "event_type": "Holiday",
+        "event_name": "Adha",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-27",
+        "time": "11:00",
+        "country": "NZ",
+        "event_type": "Indicator",
+        "event_name": "RBNZ Interest Rate Decision",
+        "actual": null,
+        "consensus": "2.25% 2.25%",
+        "previous": "2.25%"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "All Day",
+        "country": "IN",
+        "event_type": "Holiday",
+        "event_name": "Bakri Id",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-28",
+        "time": "02:00",
+        "country": "EU",
+        "event_type": "Indicator",
+        "event_name": "ECB Press Conference",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-28",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Core PCE Price Index (MoM) (Apr)",
+        "actual": null,
+        "consensus": "0.2% 0.3%",
+        "previous": "0.3%"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Core PCE Price Index (YoY) (Apr)",
+        "actual": null,
+        "consensus": "3.3% 3.3%",
+        "previous": "3.2%"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "GDP (QoQ) (Q1)",
+        "actual": null,
+        "consensus": "1.6% 2.0%",
+        "previous": "0.5%"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Durable Goods Orders (MoM) (Apr)",
+        "actual": null,
+        "consensus": "7.9% 4.0%",
+        "previous": "1.3%"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Initial Jobless Claims",
+        "actual": null,
+        "consensus": "215K 211K",
+        "previous": "210K"
+    },
+    {
+        "date": "2026-05-28",
+        "time": "23:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "New Home Sales (Apr)",
+        "actual": null,
+        "consensus": "622K 661K",
+        "previous": "663K"
+    },
+    {
+        "date": "2026-05-29",
+        "time": "15:43",
+        "country": "01:00",
+        "event_type": "Indicator",
+        "event_name": "US",
+        "actual": "Crude Oil Inventories",
+        "consensus": "-3.327M -3.800M",
+        "previous": "-7.863M"
+    },
+    {
+        "date": "2026-05-29",
+        "time": "21:00",
+        "country": "DE",
+        "event_type": "Indicator",
+        "event_name": "German CPI (MoM) (May)",
+        "actual": null,
+        "consensus": "0.1%",
+        "previous": "0.6%"
+    },
+    {
+        "date": "2026-05-29",
+        "time": "22:45",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Chicago PMI (May)",
+        "actual": null,
+        "consensus": "50.6",
+        "previous": "49.2"
+    },
+    {
+        "date": "2026-05-31",
+        "time": "10:30",
+        "country": "CN",
+        "event_type": "Indicator",
+        "event_name": "Manufacturing PMI (May)",
+        "actual": null,
+        "consensus": null,
+        "previous": "50.3"
+    }
+]

@@ -1,0 +1,112 @@
+[
+    {
+        "date": "2026-05-18",
+        "time": "All Day",
+        "country": "CA",
+        "event_type": "Holiday",
+        "event_name": "Victoria Day",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-19",
+        "time": "08:50",
+        "country": "JP",
+        "event_type": "Indicator",
+        "event_name": "GDP (QoQ) (Q1)",
+        "actual": null,
+        "consensus": "0.5% 0.4%",
+        "previous": "0.2%"
+    },
+    {
+        "date": "2026-05-20",
+        "time": "15:00",
+        "country": "UK",
+        "event_type": "Indicator",
+        "event_name": "CPI (YoY) (Apr)",
+        "actual": null,
+        "consensus": "3.0%",
+        "previous": "3.3%"
+    },
+    {
+        "date": "2026-05-20",
+        "time": "18:00",
+        "country": "EU",
+        "event_type": "Indicator",
+        "event_name": "CPI (YoY) (Apr)",
+        "actual": null,
+        "consensus": "3.0%",
+        "previous": "3.0%"
+    },
+    {
+        "date": "2026-05-20",
+        "time": "23:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Crude Oil Inventories",
+        "actual": null,
+        "consensus": null,
+        "previous": "-4.306M"
+    },
+    {
+        "date": "2026-05-21",
+        "time": "03:00",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "FOMC Meeting Minutes",
+        "actual": null,
+        "consensus": null,
+        "previous": null
+    },
+    {
+        "date": "2026-05-21",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Philadelphia Fed Manufacturing Index (May)",
+        "actual": null,
+        "consensus": "17.9",
+        "previous": "26.7"
+    },
+    {
+        "date": "2026-05-21",
+        "time": "21:30",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "Initial Jobless Claims",
+        "actual": null,
+        "consensus": "210K",
+        "previous": "211K"
+    },
+    {
+        "date": "2026-05-21",
+        "time": "22:45",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "S&P Global Manufacturing PMI (May)",
+        "actual": null,
+        "consensus": "53.6",
+        "previous": "54.5"
+    },
+    {
+        "date": "2026-05-21",
+        "time": "22:45",
+        "country": "US",
+        "event_type": "Indicator",
+        "event_name": "S&P Global Services PMI (May)",
+        "actual": null,
+        "consensus": "51.1",
+        "previous": "51.0"
+    },
+    {
+        "date": "2026-05-22",
+        "time": "15:00",
+        "country": "DE",
+        "event_type": "Indicator",
+        "event_name": "German GDP (QoQ) (Q1)",
+        "actual": null,
+        "consensus": "0.3%",
+        "previous": "0.3%"
+    }
+]

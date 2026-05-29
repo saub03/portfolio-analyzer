@@ -247,4 +247,4 @@ if __name__ == "__main__":
     graph_generator.create_stacked_bar_chart_from_logs()
     logger.info("시계열 자산 그래프 생성 완료.")
     
-    logger.info("========== 자동화 프로그램 종료 ==========")
+    logger.info("========== 자동화 프로그램 종료 ==========")   

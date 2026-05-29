@@ -21,6 +21,7 @@ class get_graph:
             os.makedirs(self.img_dir)
             logger.info(f"이미지 로그 폴더 생성: {self.img_dir}")
             
+        sns.set_style("whitegrid")
         self._set_korean_font()
 
     def _set_korean_font(self):
@@ -78,13 +79,28 @@ class get_graph:
 
         df = pd.DataFrame(data_list).set_index('date').sort_index()
 
-        # DatetimeIndex를 bar plot에 사용하기 위해 string으로 변환하여 오류를 해결합니다.
         df.index = df.index.strftime('%Y-%m-%d')
 
-        sns.set_style("whitegrid")
         fig, ax = plt.subplots(figsize=(15, 8))
 
         df.plot(kind='bar', stacked=True, ax=ax, colormap='viridis')
+        
+        # 각 막대에 비중(%) 텍스트 추가
+        df_pct = df.div(df.sum(axis=1), axis=0) * 100
+        for i, container in enumerate(ax.containers):
+            labels = []
+            for j, rect in enumerate(container):
+                height = rect.get_height()
+                if height > 0:
+                    pct = df_pct.iloc[j, i]
+                    # 비중이 2% 이상인 경우에만 텍스트 표시 (글자 겹침 방지)
+                    if pct >= 2.0:
+                        labels.append(f'{pct:.1f}%')
+                    else:
+                        labels.append('')
+                else:
+                    labels.append('')
+            ax.bar_label(container, labels=labels, label_type='center', fontsize=9, color='white', weight='bold')
 
         ax.set_title('일자별 자산 추이 (누적 막대 그래프)', fontsize=20, pad=20)
         ax.set_xlabel('날짜', fontsize=12)

@@ -6,46 +6,37 @@
         "knowledge_level": "중급"
     },
     "financial_status": {
-        "total_assets": 26000000,
         "total_liabilities": 0,
-        "total_invested_principal": 21650000,
         "emergency_fund": 1000000,
-        "monthly_savings_capacity": 0
-    },
-    "tax_info": {
-        "country": "South Korea",
-        "tax_bracket": "근로소득세 과세표준 15% 구간",
-        "account_types": [
-            {"type": "일반계좌", "description": "해외 주식 양도소득세 22%, 국내 배당소득세 15.4%"},
-            {"type": "ISA", "description": "만기 시 200만원 비과세 및 9.9% 분리과세"},
-            {"type": "연금저축펀드", "description": "연말정산 세액공제 및 과세이연 효과"}
-        ]
+        "monthly_savings_capacity": 300000
     },
     "assets": {
         "stocks": [
-            {"name":"KODEX 미국S&P500데일리커버드콜OTM", "code":"0005A0", "quantity":210, "avg_price":10075, "currency":"KRW", "type":"us_stock", "account": "ISA", "info": "가치주의 버팀목 역할 기대"},
-            {"name":"KODEX 미국S&P500", "code":"379800", "quantity":86, "avg_price":21521, "currency":"KRW", "type":"us_stock", "account": "ISA", "info": "가치주의 버팀목 역할 기대"},
-            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":74, "avg_price":22552, "currency":"KRW", "type":"us_stock", "account": "ISA", "info": "장기 기술주 주도 성장 기대"},
-            {"name":"TIGER 미국배당다우존스", "code":"458730", "quantity":191, "avg_price":14740, "currency":"KRW", "type":"jp_stock", "account": "ISA", "info": "밸류업 기대"},
-            {"name":"KODEX 미국나스닥100데일리커버드콜OTM", "code":"494300", "quantity":202, "avg_price":10069, "currency":"KRW", "type":"us_stock", "account": "ISA", "info": "가치주의 버팀목 역할 기대"}
+            {"name":"KODEX 미국S&P500데일리커버드콜OTM", "code":"0005A0", "quantity":210, "avg_price":10075, "currency":"KRW", "type":"us_stock", "info": "가치주의 버팀목 역할 기대"},
+            {"name":"KODEX 미국S&P500", "code":"379800", "quantity":86, "avg_price":21521, "currency":"KRW", "type":"us_stock", "info": "가치주의 버팀목 역할 기대"},
+            {"name":"KODEX 미국나스닥100", "code":"379810", "quantity":74, "avg_price":22552, "currency":"KRW", "type":"us_stock", "info": "장기 기술주 주도 성장 기대"},
+            {"name":"TIGER 미국배당다우존스", "code":"458730", "quantity":191, "avg_price":14740, "currency":"KRW", "type":"jp_stock", "info": "밸류업 기대"},
+            {"name":"KODEX 미국나스닥100데일리커버드콜OTM", "code":"494300", "quantity":204, "avg_price":10069, "currency":"KRW", "type":"us_stock", "info": "가치주의 버팀목 역할 기대"}
         ],
         "bonds": [
-            {"name":"ACE 미국30년국채액티브(H)", "code":"453850", "quantity":378, "avg_price":7466, "currency":"KRW", "type":"us_bond", "account": "ISA", "info": "주식 시장 하락 대비 및 금리 인하 기대"},
-            {"name":"RISE 국고채 10년액티브", "code":"481430", "quantity":28, "avg_price":99898, "currency":"KRW", "type":"us_bond", "account": "ISA", "info": "주식 시장 하락 대비"}
+            {"name":"KODEX 미국30년국채울트라선물(H)", "code":"304660", "quantity":374, "avg_price":7468, "currency":"KRW", "type":"us_bond", "info": "주식 시장 폭락시 자산 배분"},
+            {"name":"RISE 국고채 10년액티브", "code":"481430", "quantity":5, "avg_price":99898, "currency":"KRW", "type":"kr_bond", "info": "주식 시장 폭락시 자산 배분"},
+            {"name":"RISE KIS국고채30년Enhanced", "code":"385560", "quantity":40, "avg_price":56992, "currency":"KRW", "type":"kr_bond", "info": "주식 시장 폭락시 자산 배분"}
         ],
         "gold": [
-            {"name":"ACE KRX금현물", "code":"411060", "quantity":46, "avg_price":30670, "currency":"KRW", "type":"gold", "account": "ISA", "info": "인플레이션 헤지 및 안전 자산"}
+            {"name":"ACE KRX금현물", "code":"411060", "quantity":46, "avg_price":30670, "currency":"KRW", "type":"gold", "info": "인플레이션 헤지 및 안전 자산"}
         ],
         "alternative": [
-            {"name":"KODEX 한국부동산리츠인프라", "code":"476800", "quantity":595, "avg_price":4740, "currency":"KRW", "type":"realestate", "account": "ISA", "info": "금리 인하 기대감 및 자산 배분"}
+            {"name":"KODEX 한국부동산리츠인프라", "code":"476800", "quantity":595, "avg_price":4740, "currency":"KRW", "type":"realestate", "info": "금리 인하 기대감 및 자산 배분"}
         ],
         "crypto": [
-            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.02429, "avg_price":100000000, "currency":"KRW", "type":"crypto", "account": "업비트", "info": "디지털 금으로서의 장기 가치 저장 수단"},
-            {"name":"Solana", "code":"SOL/KRW", "quantity":3.42, "avg_price":261618, "currency":"KRW", "type":"crypto", "account": "업비트", "info": "급등 예상 투기종목"},
-            {"name":"Ethereum", "code":"ETH/KRW", "quantity":0.4363, "avg_price":4.184477, "currency":"KRW", "type":"crypto", "account": "업비트", "info": "스테이블 코인 관련 수혜 예상"}
+            {"name":"Bitcoin", "code":"BTC/KRW", "quantity":0.02429, "avg_price":152423695, "currency":"KRW", "type":"crypto", "info": "디지털 금으로서의 장기 가치 저장 수단"},
+            {"name":"Solana", "code":"SOL/KRW", "quantity":3.4318, "avg_price":261365, "currency":"KRW", "type":"crypto", "info": "스테이블 코인 관련 수혜 예상"},
+            {"name":"Ethereum", "code":"ETH/KRW", "quantity":0.4364, "avg_price":4184477, "currency":"KRW", "type":"crypto", "info": "스테이블 코인 관련 수혜 예상"},
+            {"name":"XRP", "code":"XRP/KRW", "quantity":115.5, "avg_price":4201, "currency":"KRW", "type":"crypto", "info": "스테이블 코인 관련 수혜 예상"}
         ],
         "cash": {
-            "KRW":5000, "USD":100
+            "KRW":5000, "USD":0
         }
     },
     "target_ratio": {

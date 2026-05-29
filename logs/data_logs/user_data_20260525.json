@@ -1,0 +1,248 @@
+{
+    "investor_profile": {
+        "user_profile": {
+            "investment_goal": "폭발적 자산 증식",
+            "time_horizon": "4년",
+            "risk_tolerance": "초 위험",
+            "knowledge_level": "중급"
+        },
+        "financial_status": {
+            "total_assets": 800000000,
+            "total_liabilities": 250000000,
+            "total_invested_principal": 450000000,
+            "emergency_fund": 0,
+            "monthly_savings_capacity": 500000
+        },
+        "tax_info": {
+            "country": "South Korea",
+            "tax_bracket": "근로소득세 과세표준 15% 구간",
+            "account_types": [
+                {
+                    "type": "일반계좌",
+                    "description": "해외 주식 양도소득세 22%, 국내 배당소득세 15.4%"
+                },
+                {
+                    "type": "ISA",
+                    "description": "만기 시 200만원 비과세 및 9.9% 분리과세"
+                },
+                {
+                    "type": "연금저축펀드",
+                    "description": "연말정산 세액공제 및 과세이연 효과"
+                }
+            ]
+        }
+    },
+    "portfolio_holdings": {
+        "stocks": [],
+        "bonds": [],
+        "gold": [
+            {
+                "name": "ACE KRX금현물",
+                "code": "411060",
+                "quantity": 360,
+                "avg_price": 30670,
+                "currency": "KRW",
+                "type": "gold",
+                "account": "ISA",
+                "info": "인플레이션 헤지 및 안전 자산"
+            }
+        ],
+        "alternative": [
+            {
+                "name": "KODEX 한국부동산리츠인프라",
+                "code": "476800",
+                "quantity": 595,
+                "avg_price": 4740,
+                "currency": "KRW",
+                "type": "realestate",
+                "account": "ISA",
+                "info": "금리 인하 기대감 및 자산 배분"
+            }
+        ],
+        "crypto": [
+            {
+                "name": "Bitcoin",
+                "code": "BTC/KRW",
+                "quantity": 0.02429,
+                "avg_price": 100000000,
+                "currency": "KRW",
+                "type": "crypto",
+                "account": "업비트",
+                "info": "디지털 금으로서의 장기 가치 저장 수단"
+            },
+            {
+                "name": "Solana",
+                "code": "SOL/KRW",
+                "quantity": 3.42,
+                "avg_price": 261618,
+                "currency": "KRW",
+                "type": "crypto",
+                "account": "업비트",
+                "info": "급등 예상 투기종목"
+            },
+            {
+                "name": "Ethereum",
+                "code": "ETH/KRW",
+                "quantity": 0.4363,
+                "avg_price": 4.184477,
+                "currency": "KRW",
+                "type": "crypto",
+                "account": "업비트",
+                "info": "스테이블 코인 관련 수혜 예상"
+            }
+        ],
+        "cash": {
+            "KRW": 5000,
+            "USD": 100
+        }
+    },
+    "risk_and_performance": {
+        "current_values": {
+            "stocks": 0,
+            "bonds": 0,
+            "gold": 10917000,
+            "crypto": 4692077,
+            "alternative": 2695350,
+            "cash": 156310
+        },
+        "profit_loss_summary": {
+            "stocks": {
+                "invested_principal": 0,
+                "current_value": 0,
+                "profit_loss_amount": 0,
+                "profit_loss_ratio_pct": 0
+            },
+            "bonds": {
+                "invested_principal": 0,
+                "current_value": 0,
+                "profit_loss_amount": 0,
+                "profit_loss_ratio_pct": 0
+            },
+            "gold": {
+                "invested_principal": 11041200,
+                "current_value": 10917000,
+                "profit_loss_amount": -124200,
+                "profit_loss_ratio_pct": -1.12
+            },
+            "crypto": {
+                "invested_principal": 3323735,
+                "current_value": 4692077,
+                "profit_loss_amount": 1368342,
+                "profit_loss_ratio_pct": 41.17
+            },
+            "alternative": {
+                "invested_principal": 2820300,
+                "current_value": 2695350,
+                "profit_loss_amount": -124950,
+                "profit_loss_ratio_pct": -4.43
+            },
+            "cash": {
+                "invested_principal": 156310,
+                "current_value": 156310,
+                "profit_loss_amount": 0,
+                "profit_loss_ratio_pct": 0.0
+            }
+        },
+        "weight_differences": {
+            "current_ratio": {
+                "stocks": 0.0,
+                "bonds": 0.0,
+                "gold": 0.5913631725537285,
+                "crypto": 0.25416520478028587,
+                "alternative": 0.14600446341876816,
+                "cash": 0.008467159247217486
+            },
+            "target_ratio": {
+                "stocks": 0.5,
+                "bonds": 0.2,
+                "gold": 0.05,
+                "crypto": 0.15,
+                "alternative": 0.1,
+                "cash": 0.0
+            },
+            "diff_ratio": {
+                "stocks": -0.5,
+                "bonds": -0.2,
+                "gold": 0.5413631725537285,
+                "crypto": 0.10416520478028587,
+                "alternative": 0.046004463418768154,
+                "cash": 0.008467159247217486
+            }
+        },
+        "mdd": {
+            "Bitcoin": -0.4757063364044304,
+            "Ethereum": -0.600730416641184,
+            "Solana": -0.6734762300148139,
+            "KODEX 한국부동산리츠인프라": -0.1284313725490196,
+            "ACE KRX금현물": -0.22763262074425972
+        },
+        "correlation": {
+            "Bitcoin": {
+                "Bitcoin": 1.0,
+                "Ethereum": 0.8476545730378352,
+                "Solana": 0.8254146046497971,
+                "KODEX 한국부동산리츠인프라": -0.0011435539666511867,
+                "ACE KRX금현물": -0.09655529408022623
+            },
+            "Ethereum": {
+                "Bitcoin": 0.8476545730378352,
+                "Ethereum": 1.0,
+                "Solana": 0.8766721654338182,
+                "KODEX 한국부동산리츠인프라": 0.007027850418294409,
+                "ACE KRX금현물": -0.09049376121828047
+            },
+            "Solana": {
+                "Bitcoin": 0.8254146046497971,
+                "Ethereum": 0.8766721654338182,
+                "Solana": 1.0,
+                "KODEX 한국부동산리츠인프라": 0.04086294792650587,
+                "ACE KRX금현물": -0.12087038013812405
+            },
+            "KODEX 한국부동산리츠인프라": {
+                "Bitcoin": -0.0011435539666511867,
+                "Ethereum": 0.007027850418294409,
+                "Solana": 0.04086294792650587,
+                "KODEX 한국부동산리츠인프라": 1.0,
+                "ACE KRX금현물": 0.09768477785225842
+            },
+            "ACE KRX금현물": {
+                "Bitcoin": -0.09655529408022623,
+                "Ethereum": -0.09049376121828047,
+                "Solana": -0.12087038013812405,
+                "KODEX 한국부동산리츠인프라": 0.09768477785225842,
+                "ACE KRX금현물": 1.0
+            }
+        },
+        "returns": {
+            "assets_return": {
+                "ACE KRX금현물": -0.011248777306814476,
+                "Bitcoin": 0.17289616,
+                "Solana": -0.5026310426843719,
+                "Ethereum": 765793.0287400313,
+                "KODEX 한국부동산리츠인프라": -0.04430379746835443
+            },
+            "total_return": 0.0651252370943551
+        },
+        "volatility": {
+            "Bitcoin": 0.39003353841376576,
+            "Ethereum": 0.6052808723176464,
+            "Solana": 0.6372027808981114,
+            "KODEX 한국부동산리츠인프라": 0.10753397886258116,
+            "ACE KRX금현물": 0.27332702213392235
+        },
+        "sharpe_ratio": {
+            "Bitcoin": -1.1503102713930131,
+            "Ethereum": -0.22608459642038695,
+            "Solana": -0.7756255150606859,
+            "KODEX 한국부동산리츠인프라": 1.2966204048544614,
+            "ACE KRX금현물": 1.8145597428568792
+        },
+        "beta": {
+            "Bitcoin": 1.3064519136973147,
+            "Ethereum": 2.2404402834007886,
+            "Solana": 1.8947626040083512,
+            "KODEX 한국부동산리츠인프라": -0.02246809509796348,
+            "ACE KRX금현물": 0.14274296088172142
+        }
+    }
+}
