@@ -12,6 +12,7 @@ from src.read_userinfo import PortfolioReader
 from src.ai_analyzer import AIAnalyzer
 from src.statistical_analysis import StatisticalAnalyzer
 from src.graphs import get_graph
+from src.email_sender import EmailSender
 
 import pandas as pd
 
@@ -246,5 +247,13 @@ if __name__ == "__main__":
     graph_generator = get_graph()
     graph_generator.create_stacked_bar_chart_from_logs()
     logger.info("시계열 자산 그래프 생성 완료.")
+    
+    '''
+    9. ai_report email 전송
+    '''
+    logger.info("이메일 전송을 시작합니다...")
+    email_sender = EmailSender()
+    report_path = f"logs/data_logs/ai_report_{today_str}.md"
+    email_sender.send_report(report_path, today_str)
     
     logger.info("========== 자동화 프로그램 종료 ==========")   

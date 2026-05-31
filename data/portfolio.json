@@ -1,8 +1,8 @@
 {
     "user_profile": {
-        "investment_goal": "은퇴 자금 마련 및 자산 증식",
-        "time_horizon": "20년 이상",
-        "risk_tolerance": "균형 성장형",
+        "investment_goal": "자산 증식",
+        "time_horizon": "10년 이상",
+        "risk_tolerance": "적극 투자형",
         "knowledge_level": "중급"
     },
     "financial_status": {
