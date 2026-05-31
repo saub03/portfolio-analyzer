@@ -245,7 +245,7 @@ if __name__ == "__main__":
     '''
     logger.info("시계열 자산 그래프 생성 시작...")
     graph_generator = get_graph()
-    graph_generator.create_stacked_bar_chart_from_logs()
+    graph_path = graph_generator.create_stacked_bar_chart_from_logs()
     logger.info("시계열 자산 그래프 생성 완료.")
     
     '''
@@ -254,6 +254,6 @@ if __name__ == "__main__":
     logger.info("이메일 전송을 시작합니다...")
     email_sender = EmailSender()
     report_path = f"logs/data_logs/ai_report_{today_str}.md"
-    email_sender.send_report(report_path, today_str)
+    email_sender.send_report(report_path, today_str, image_path=graph_path)
     
     logger.info("========== 자동화 프로그램 종료 ==========")   
