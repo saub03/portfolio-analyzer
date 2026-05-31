@@ -236,7 +236,7 @@ if __name__ == "__main__":
     )
     
     # 로그 및 마크다운 파일로 저장
-    logger.info(f"\n[AI 분석 리포트]\n{ai_report}")
+    logger.info(f"\n[AI 분석 리포트]\n{ai_report[:10]}")
     with open(f"logs/data_logs/ai_report_{today_str}.md", "w", encoding="utf-8") as f:
         f.write(ai_report)
     
