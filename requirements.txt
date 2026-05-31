@@ -1,0 +1,13 @@
+google-genai
+python-dotenv
+pandas
+numpy
+finance-datareader
+Jinja2
+Markdown
+requests
+beautifulsoup4
+matplotlib
+seaborn
+undetected-chromedriver
+feedparser
